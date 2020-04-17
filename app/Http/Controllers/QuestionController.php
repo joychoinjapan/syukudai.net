@@ -58,7 +58,7 @@ class QuestionController extends Controller
 
         $question=Question::find($id);
 
-        return $question;
+        return view('questions.show',compact('question'));
     }
 
     /**
