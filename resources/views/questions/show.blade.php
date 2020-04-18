@@ -8,7 +8,7 @@
                         <p>{{$question->title}}</p>
                     </div>
                     <div class="message-body">
-                        {!!$question->body!!}
+                        {!!$question->content!!}
                     </div>
                 </article>
             </div>

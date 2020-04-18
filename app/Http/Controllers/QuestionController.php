@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,14 +33,14 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreQuestionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
         $data =[
             'title'=>$request->get('title'),
-            'body'=>$request->get('content'),
+            'content'=>$request->get('content'),
             'user_id'=>Auth::id()
         ];
         $question=Question::create($data);

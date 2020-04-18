@@ -29,7 +29,10 @@ class CreateQuestionsTable extends Migration
             $table->string('is_violation',8)->default('F');
             $table->timestamps();
         });
+
+
     }
+
 
     /**
      * Reverse the migrations.

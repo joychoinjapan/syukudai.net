@@ -20,7 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('bulma/css/bulma.min.css') }}" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
 <div id="app">
@@ -82,7 +82,6 @@
                 </div>
             </div>
         </div>
-</div>
 </nav>
 <div class="container">
     @include('flash::message')
@@ -93,13 +92,11 @@
 </div>
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 <script>
     $('#flash-overlay-modal').modal();
 </script>
 
-<script>
-    CKEDITOR.replace('content')
-</script>
 </body>
 </html>

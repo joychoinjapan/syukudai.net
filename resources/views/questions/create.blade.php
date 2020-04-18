@@ -7,14 +7,29 @@
                 <div class="field">
                     <label class="label">タイトル</label>
                     <div class="control">
-                        <input class="input" name="title" type="text" placeholder="問題のタイトルをご入力ください">
+                        <input class="input" name="title" id="title" type="text" value="{{old("title")}}" placeholder="問題のタイトルをご入力ください">
+                    </div>
+                    @if($errors->has('title'))
+                        <p class="help is-danger">{{$errors->first('title')}}</p>
+                    @endif
+                </div>
+                <div class="field">
+                    <label for="" class="label">トピックス</label>
+                    <div class="control">
+                        <select class="js-example-basic-multiple form-control" name="states[]" multiple="multiple">
+                            <option value="AL">Alabama</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">内容</label>
                     <div class="control">
-                         <textarea class="form-control" name="content" id="content"></textarea>
+                         <textarea class="form-control" name="content" id="content" >{{old("content")}}</textarea>
                     </div>
+                    @if($errors->has('content'))
+                    <p class="help is-danger">{{$errors->first('content')}}</p>
+                    @endif
                 </div>
                  <div class="field is-grouped">
                     <div class="control">
@@ -28,4 +43,10 @@
             </div>
         </div>
     </div>
+    <script>
+        CKEDITOR.replace('content')
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
 @endsection

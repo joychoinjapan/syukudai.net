@@ -264,8 +264,9 @@ return [
     'attributes' => [
         'email'=>'メールアドレス',
         'password'=>'パスワード',
-        'password-confirm'=>'パスワード(確認)'
-
+        'password-confirm'=>'パスワード(確認)',
+        'title'=>'タイトル',
+        'content'=>'内容'
     ],
 
 ];
