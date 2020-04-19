@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
+use App\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function foo\func;
 
 
 class QuestionController extends Controller
@@ -33,39 +35,41 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\StoreQuestionRequest  $request
+     * @param \Illuminate\Http\StoreQuestionRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreQuestionRequest $request)
     {
-        $data =[
-            'title'=>$request->get('title'),
-            'content'=>$request->get('content'),
-            'user_id'=>Auth::id()
+        $topics = $this->normalizeTopic($request->get('topics'));
+        $data = [
+            'title' => $request->get('title'),
+            'content' => $request->get('content'),
+            'user_id' => Auth::id()
         ];
-        $question=Question::create($data);
-        return redirect()->route('questions.show',[$question->id]);
+        $question = Question::create($data);
+        $question->topics()->attach($topics);
+        return redirect()->route('questions.show', [$question->id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
 
-        $question=Question::find($id);
+        $question = Question::find($id);
+        $topics =$question->topics()->get();
 
-        return view('questions.show',compact('question'));
+        return view('questions.show', compact('question','topics'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -76,8 +80,8 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -88,11 +92,23 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
+    }
+
+    private function normalizeTopic(array $topics)
+    {
+        return collect($topics)->map(function ($topic) {
+            if (is_numeric($topic)) {
+                Topic::find($topic)->increment('questions_count');
+                return (int)$topic;
+            }
+            $newTopic = Topic::create(['name' => $topic, 'questions_count' => 1]);
+            return $newTopic->id;
+        })->toArray();
     }
 }

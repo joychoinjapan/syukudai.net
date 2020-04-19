@@ -19,15 +19,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('bulma/css/bulma.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/all.css')}}">
+{{--    <link href="{{ asset('bulma/css/bulma.min.css') }}" rel="stylesheet">--}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+{{--    <link href="{{ asset('@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.css') }}" rel="stylesheet">--}}
+
 </head>
 <body>
 <div id="app">
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="{{ url('/') }}">
-                {{ config('app.name', '宿題.net') }}
+                {{ config('app.name', 'Ask.net') }}
             </a>
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
                data-target="navbarBasicExample">
@@ -97,6 +100,6 @@
 <script>
     $('#flash-overlay-modal').modal();
 </script>
-
+@yield('js')
 </body>
 </html>
