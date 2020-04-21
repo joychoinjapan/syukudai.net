@@ -21,11 +21,15 @@
                             編集
                         </button>
                     </p>
-                    <p class="control">
-                        <button class="button is-danger is-outlined is-small">
-                            削除
-                        </button>
-                    </p>
+                    <form action="/questions/{{$question->id}}" method="POST">
+                         {{method_field('DELETE')}}
+                         {{csrf_field()}}
+                        <p class="control">
+                            <button class="button is-danger is-outlined is-small" type="submit">
+                                削除
+                            </button>
+                        </p>
+                    </form>
                     @endif
                 </div>
             </div>

@@ -22,13 +22,14 @@ class QuestionController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the questions.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return 'index';
+        $questions=$this->questionRepository->getQuestionsFeed();
+        return view('questions.index',compact('questions'));
     }
 
     /**
@@ -120,7 +121,12 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question =$this->questionRepository->byId($id);
+        if(Auth::user()->owns($question)){
+            $question->delete();
+            return redirect('/questions');
+        }
+        abort(403,'Forbidden');
     }
 
 }

@@ -162,3 +162,25 @@ form.was-validated select:valid ~ .select2-container--bootstrap4 .select2-select
   margin-right: 0.3em; }
   .select2-container--bootstrap4 .select2-selection__clear:hover {
     background-color: #343a40; }
+
+.limit-line {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+a{
+   color: #4a4a4a;
+   text-decoration: none;
+}
+
+a:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+a:focus {
+    outline-style:none;
+    -moz-outline-style: none;
+}

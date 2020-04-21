@@ -1,0 +1,21 @@
+.limit-line {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+a{
+   color: #4a4a4a;
+   text-decoration: none;
+}
+
+a:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+a:focus {
+    outline-style:none;
+    -moz-outline-style: none;
+}
