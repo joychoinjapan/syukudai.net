@@ -22,12 +22,12 @@
     <link rel="stylesheet" href="{{asset('css/all.css')}}">
 {{--    <link href="{{ asset('bulma/css/bulma.min.css') }}" rel="stylesheet">--}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 {{--    <link href="{{ asset('@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.css') }}" rel="stylesheet">--}}
 
 </head>
 <body>
 <div id="app">
-    <div class="container p-0">
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="{{ url('/') }}">
@@ -87,14 +87,13 @@
                 </div>
             </div>
         </nav>
-    </div>
+</div>
 <div class="container">
     @include('flash::message')
 </div>
 <main class="py-4">
     @yield('content')
 </main>
-</div>
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>

@@ -23,3 +23,5 @@ Route::get('/test', function () {
     return view('testEditor');
 });
 Route::resource('questions', 'QuestionController');
+
+Route::post('question/{question}/answer','AnswersController@store');
