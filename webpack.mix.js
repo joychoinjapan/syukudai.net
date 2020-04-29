@@ -17,5 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
 mix.styles([
     'node_modules/bulma/css/bulma.min.css',
     'node_modules/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.css',
-    'resources/css/customize.css'
+    'resources/css/customize.css',
 ],'public/css/all.css')

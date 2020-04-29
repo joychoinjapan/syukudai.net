@@ -13,15 +13,19 @@
                     {!!$question->content!!}
                 </article>
             </div>
-            <div class="col-md-4">
-                <button>
+            <div class="col-md-4 row">
+                <button class="button list-button is-light">
                     <div>
                         フォロワー
                     </div>
-                    <div>
-                        2人
-                    </div>
+                    <strong>
+                        2334人
+                    </strong>
                 </button>
+                <div class="read-block">
+                    <p>閲覧数</p>
+                    <strong>12,8773</strong>
+                </div>
             </div>
             <div class="col-md-12 question-main">
                 <div class="field is-grouped is-pulled-left">
@@ -42,6 +46,9 @@
                         </form>
                     @else
                         <p class="control">
+                            <button class="button is-link is-small">
+                                フォローする
+                            </button>
                             <button class="button is-link is-outlined is-small">
                                 答える
                             </button>
