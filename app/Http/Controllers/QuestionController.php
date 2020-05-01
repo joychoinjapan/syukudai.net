@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Follow;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
 use App\Topic;
@@ -72,15 +73,11 @@ class QuestionController extends Controller
     {
 
         $question = $this->questionRepository->byIdWithTopicsAndAnswers($id);
-        $is_followed = False;
-        foreach ($question->followers as $follower) {
-            if (Auth::user() == null || Auth::user()->id !== $follower->id) {
-                $is_followed = False;
-            } else {
-                $is_followed = True;
-            }
+        if (Auth::user() == null) {
+            $is_followed = False;
+        } else {
+            $is_followed = Auth::user()->followed($id);
         }
-
         return view('questions.show', compact('question', 'is_followed'));
     }
 

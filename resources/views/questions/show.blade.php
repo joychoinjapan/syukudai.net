@@ -47,7 +47,7 @@
                     @else
                         <p class="control">
                             @if($is_followed)
-                                <a type="button" class="button is-link is-small" href="{{route('question.unfollow',['question'=>$question->id])}}">
+                                <a type="button" class="button is-light is-small" href="{{route('question.unfollow',['question'=>$question->id])}}">
                                     フォロー解除
                                 </a>
                             @else

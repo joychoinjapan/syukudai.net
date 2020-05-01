@@ -35,7 +35,7 @@ class User extends Authenticatable
         return $this->id == $model->user_id;
     }
 
-    public function followers()
+    public function follow()
     {
         return $this->belongsToMany(Question::class,'user_question')->withTimestamps();
 
@@ -43,11 +43,17 @@ class User extends Authenticatable
 
     public function followThis($question)
     {
-        return $this->followers()->toggle($question);
+        return $this->follow()->toggle($question);
     }
 
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    //このユーザーはこの質問をフォローしているか
+    public function followed($question)
+    {
+        return !!$this->follow()->where('question_id',$question)->count();
     }
 }
