@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
 use App\Topic;
+use Cassandra\Exception\TruncateException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\QuestionRepository;
@@ -28,8 +29,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions=$this->questionRepository->getQuestionsFeed();
-        return view('questions.index',compact('questions'));
+        $questions = $this->questionRepository->getQuestionsFeed();
+        return view('questions.index', compact('questions'));
     }
 
     /**
@@ -71,8 +72,16 @@ class QuestionController extends Controller
     {
 
         $question = $this->questionRepository->byIdWithTopicsAndAnswers($id);
+        $is_followed = False;
+        foreach ($question->followers as $follower) {
+            if (Auth::user() == null || Auth::user()->id !== $follower->id) {
+                $is_followed = False;
+            } else {
+                $is_followed = True;
+            }
+        }
 
-        return view('questions.show', compact('question'));
+        return view('questions.show', compact('question', 'is_followed'));
     }
 
     /**
@@ -121,12 +130,12 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        $question =$this->questionRepository->byId($id);
-        if(Auth::user()->owns($question)){
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)) {
             $question->delete();
             return redirect('/questions');
         }
-        abort(403,'Forbidden');
+        abort(403, 'Forbidden');
     }
 
 }

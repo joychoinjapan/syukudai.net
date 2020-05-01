@@ -19,7 +19,7 @@
                         フォロワー
                     </div>
                     <strong>
-                        2334人
+                        {{$question->followers_count}}人
                     </strong>
                 </button>
                 <div class="read-block">
@@ -46,9 +46,15 @@
                         </form>
                     @else
                         <p class="control">
-                            <button class="button is-link is-small">
-                                フォローする
-                            </button>
+                            @if($is_followed)
+                                <a type="button" class="button is-link is-small" href="{{route('question.unfollow',['question'=>$question->id])}}">
+                                    フォロー解除
+                                </a>
+                            @else
+                                <a type="button" class="button is-link is-small" href="{{route('question.follow',['question'=>$question->id])}}">
+                                    フォローする
+                                </a>
+                            @endif
                             <button class="button is-link is-outlined is-small">
                                 答える
                             </button>

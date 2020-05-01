@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','avatar','confirmation_token'
+        'name', 'email', 'password', 'avatar', 'confirmation_token'
     ];
 
     /**
@@ -33,6 +33,17 @@ class User extends Authenticatable
     public function owns(Model $model)
     {
         return $this->id == $model->user_id;
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(Question::class,'user_question')->withTimestamps();
+
+    }
+
+    public function followThis($question)
+    {
+        return $this->followers()->toggle($question);
     }
 
     public function answers()

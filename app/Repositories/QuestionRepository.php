@@ -9,7 +9,7 @@ class QuestionRepository
 {
     public function byIdWithTopicsAndAnswers($id)
     {
-        return Question::where('id',$id)->with('topics','answers')->first();
+        return Question::where('id',$id)->with('topics','answers','followers')->first();
     }
 
     public function create(array $attributes)
