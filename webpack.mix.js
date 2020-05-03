@@ -12,10 +12,15 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+   .sass('resources/sass/app.scss', 'public/css').version();
+
+mix.copy('node_modules/ckeditor4/ckeditor.js','public/js/ckeditor4/ckeditor.js');
+mix.copy('node_modules/ckeditor4-vue/dist/ckeditor.js','public/js/ckeditor4-vue/dist/ckeditor.js');
 
 mix.styles([
     'node_modules/bulma/css/bulma.min.css',
     'node_modules/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.css',
     'resources/css/customize.css',
 ],'public/css/all.css')
+
+

@@ -1,5 +1,7 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/all.css": "/css/all.css"
+    "/js/app.js": "/js/app.js?id=bafdde0f6275b9a509c2",
+    "/css/app.css": "/css/app.css?id=f381ed76ff9452857b84",
+    "/js/ckeditor4/ckeditor.js": "/js/ckeditor4/ckeditor.js?id=aa81f7b2b2ddb8c4e0dd",
+    "/js/ckeditor4-vue/dist/ckeditor.js": "/js/ckeditor4-vue/dist/ckeditor.js?id=c291478cfda4477bc7b1",
+    "/css/all.css": "/css/all.css?id=4624b0d035f094c57559"
 }

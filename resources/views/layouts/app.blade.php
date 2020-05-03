@@ -10,8 +10,13 @@
     <title>{{ config('app.name', '宿題.net') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
+
+{{--    <script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>--}}
+
+{{--    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>--}}
+    <script src={{asset("js/ckeditor4/ckeditor.js")}}></script>
+    <script src={{asset("js/ckeditor4-vue/dist/ckeditor.js")}}></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -87,13 +92,14 @@
                 </div>
             </div>
         </nav>
-</div>
+
 <div class="container">
     @include('flash::message')
 </div>
 <main class="py-4">
     @yield('content')
 </main>
+</div>
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
@@ -102,5 +108,6 @@
     $('#flash-overlay-modal').modal();
 </script>
 @yield('js')
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

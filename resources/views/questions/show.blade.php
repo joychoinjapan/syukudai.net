@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-md-8">
                 <div class="my-3">
@@ -31,7 +31,8 @@
                 <div class="field is-grouped is-pulled-left">
                     @if(Auth::check()&&Auth::user()->owns($question))
                         <p class="control">
-                            <button class="button is-info is-outlined is-small" onclick="location.href='/questions/{{$question->id}}/edit'">
+                            <button class="button is-info is-outlined is-small"
+                                    onclick="location.href='/questions/{{$question->id}}/edit'">
                                 編集
                             </button>
                         </p>
@@ -46,15 +47,17 @@
                         </form>
                     @else
                         <p class="control">
-                            @if($is_followed)
-                                <a type="button" class="button is-light is-small" href="{{route('question.unfollow',['question'=>$question->id])}}">
-                                    フォロー解除
-                                </a>
-                            @else
-                                <a type="button" class="button is-link is-small" href="{{route('question.follow',['question'=>$question->id])}}">
-                                    フォローする
-                                </a>
-                            @endif
+                            {{--                            @if($is_followed)--}}
+                            {{--                                <a type="button" class="button is-light is-small" href="{{route('question.unfollow',['question'=>$question->id])}}">--}}
+                            {{--                                    フォロー解除--}}
+                            {{--                                </a>--}}
+                            {{--                            @else--}}
+                            {{--                                <a type="button" class="button is-link is-small" href="{{route('question.follow',['question'=>$question->id])}}">--}}
+                            {{--                                    フォローする--}}
+                            {{--                                </a>--}}
+                            {{--                            @endif--}}
+                            <question-follow-button question="{{$question->id}}"
+                                                    user="{{Auth::id()}}"></question-follow-button>
                             <button class="button is-link is-outlined is-small">
                                 答える
                             </button>
@@ -65,35 +68,39 @@
             <div class="col-md-8">
                 <div class="card mb-2">
                     @if(Auth::check())
-                    <div class="card-content answer-block">
-                        <div class="media">
-                            <div class="media-left">
-                                <figure class="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                                </figure>
+                        <div class="card-content answer-block">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="https://bulma.io/images/placeholders/96x96.png"
+                                             alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">{{Auth::user()->name}}</p>
+                                    <p class="subtitle is-6">@johnsmith</p>
+                                </div>
                             </div>
-                            <div class="media-content">
-                                <p class="title is-4">{{Auth::user()->name}}</p>
-                                <p class="subtitle is-6">@johnsmith</p>
-                            </div>
+                            <form action="/question/{{$question->id}}/answer" method="post">
+                                {{csrf_field()}}
+                                {{--                            <div class="control edit-answer-area mb-3">--}}
+                                {{--                                --}}
+                                {{--                            </div>--}}
+                                <div class="control edit-answer-area mb-3" id="ckeditor">
+                                    <ckeditor></ckeditor>
+                                </div>
+                                <div class="field is-grouped">
+                                    <div class="control">
+                                        <button class="button is-link is-small">投稿</button>
+                                    </div>
+                                    <div class="control">
+                                        <button class="button is-link is-light is-small">キャンセル</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <form action="/question/{{$question->id}}/answer" method="post">
-                            {{csrf_field()}}
-                            <div class="control edit-answer-area mb-3">
-                                <textarea class="textarea" placeholder="Textarea" name="content" id="content"></textarea>
-                            </div>
-                            <div class="field is-grouped">
-                                <div class="control">
-                                    <button class="button is-link is-small">投稿</button>
-                                </div>
-                                <div class="control">
-                                    <button class="button is-link is-light is-small">キャンセル</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                     @else
-                         <a href="{{url('login')}}" class="button is-success is-light">ログインして回答する</a>
+                        <a href="{{url('login')}}" class="button is-success is-light">ログインして回答する</a>
                     @endif
                 </div>
                 <div class="card">
@@ -109,11 +116,12 @@
                         </a>
                     </header>
                     @foreach($question->answers as $answer)
-                     <div class="card-content answer-block">
+                        <div class="card-content answer-block">
                             <div class="media">
                                 <div class="media-left">
                                     <figure class="image is-48x48">
-                                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                                        <img src="https://bulma.io/images/placeholders/96x96.png"
+                                             alt="Placeholder image">
                                     </figure>
                                 </div>
                                 <div class="media-content">
@@ -175,10 +183,10 @@
                 </div>
             </div>
         </div>
-</div>
+    </div>
 @endsection
 @section('js')
     <script>
-        CKEDITOR.replace('content')
+        // CKEDITOR.replace('content')
     </script>
 @endsection

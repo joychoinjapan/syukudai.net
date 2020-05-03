@@ -3,23 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionFollowController extends Controller
 {
-    public function follow($question)
+    public function follow(Request $request)
     {
-        Question::find($question)->increment('followers_count');
-        Auth::user()->followThis($question);
-        return back();
+        $question_id = \request('question');
+        $user_id = \request('user');
+        Question::find($question_id)->increment('followers_count');
+        User::find($user_id)->followThis($question_id);
+        return response()->json(['followed' => true]);
     }
 
-    public function unfollow($question)
+    public function unfollow(Request $request)
     {
-        Question::find($question)->decrement('followers_count');
-        Auth::user()->followThis($question);
-        return back();
+        $question_id = \request('question');
+        $user_id = \request('user');
+        Question::find($question_id)->decrement('followers_count');
+        User::find($user_id)->followThis($question_id);
+        return response()->json(['followed' => false]);
     }
 
 }
