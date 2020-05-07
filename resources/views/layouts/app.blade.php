@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="api-token" content="{{\Illuminate\Support\Facades\Auth::check()?'Bearer '.Auth::user()->api_token:'Bearer '}}">
 
     <title>{{ config('app.name', '宿題.net') }}</title>
 

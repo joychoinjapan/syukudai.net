@@ -11,10 +11,7 @@
         mounted() {
             axios.post('/api/question/follower', this.QuestionAndUser)
                 .then(response => {
-
                         this.followed = response.data.followed;
-
-
                 })
                 .catch(function (error) {
                     console.log(error);

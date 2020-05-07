@@ -39,6 +39,18 @@ if (token) {
 }
 
 /**
+ * API認証用
+ */
+let api_token= document.head.querySelector('meta[name="api-token"]');
+
+if (token) {
+    window.axios.defaults.headers.common['Authorization'] = api_token.content;
+} else {
+    console.error('Authorization token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+
+/**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.

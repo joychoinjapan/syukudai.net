@@ -14,8 +14,8 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css').version();
 
-mix.copy('node_modules/ckeditor4/ckeditor.js','public/js/ckeditor4/ckeditor.js');
-mix.copy('node_modules/ckeditor4-vue/dist/ckeditor.js','public/js/ckeditor4-vue/dist/ckeditor.js');
+mix.copy('node_modules/ckeditor4','public/js/ckeditor4');
+mix.copy('node_modules/ckeditor4-vue','public/js/ckeditor4-vue');
 
 mix.styles([
     'node_modules/bulma/css/bulma.min.css',
