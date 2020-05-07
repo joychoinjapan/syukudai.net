@@ -27,46 +27,39 @@
                     <strong>12,8773</strong>
                 </div>
             </div>
+            @if(Auth::check())
             <div class="col-md-12 question-main">
                 <div class="field is-grouped is-pulled-left">
-                    @if(Auth::check()&&Auth::user()->owns($question))
-                        <p class="control">
-                            <button class="button is-info is-outlined is-small"
-                                    onclick="location.href='/questions/{{$question->id}}/edit'">
-                                編集
-                            </button>
-                        </p>
-                        <form action="/questions/{{$question->id}}" method="POST">
-                            {{method_field('DELETE')}}
-                            {{csrf_field()}}
+                        @if(Auth::user()->owns($question))
                             <p class="control">
-                                <button class="button is-danger is-outlined is-small" type="submit">
-                                    削除
+                                <button class="button is-info is-outlined is-small"
+                                        onclick="location.href='/questions/{{$question->id}}/edit'">
+                                    編集
                                 </button>
                             </p>
-                        </form>
-                    @else
-                        <p class="control">
-                            {{--                            @if($is_followed)--}}
-                            {{--                                <a type="button" class="button is-light is-small" href="{{route('question.unfollow',['question'=>$question->id])}}">--}}
-                            {{--                                    フォロー解除--}}
-                            {{--                                </a>--}}
-                            {{--                            @else--}}
-                            {{--                                <a type="button" class="button is-link is-small" href="{{route('question.follow',['question'=>$question->id])}}">--}}
-                            {{--                                    フォローする--}}
-                            {{--                                </a>--}}
-                            {{--                            @endif--}}
-                            <question-follow-button question="{{$question->id}}"
-                                                    user="{{Auth::id()}}"></question-follow-button>
-                            <button class="button is-link is-outlined is-small">
-                                答える
-                            </button>
-                        </p>
-                    @endif
+                            <form action="/questions/{{$question->id}}" method="POST">
+                                {{method_field('DELETE')}}
+                                {{csrf_field()}}
+                                <p class="control">
+                                    <button class="button is-danger is-outlined is-small" type="submit">
+                                        削除
+                                    </button>
+                                </p>
+                            </form>
+                        @else
+                            <p class="control">
+                                <question-follow-button question="{{$question->id}}"
+                                                        user="{{Auth::id()}}"></question-follow-button>
+                                <button class="button is-link is-outlined is-small">
+                                    答える
+                                </button>
+                            </p>
+                        @endif
                 </div>
             </div>
+            @endif
             <div class="col-md-8">
-                <div class="card mb-2">
+                <div class="card my-2">
                     @if(Auth::check())
                         <div class="card-content answer-block">
                             <div class="media">
@@ -83,9 +76,6 @@
                             </div>
                             <form action="/question/{{$question->id}}/answer" method="post">
                                 {{csrf_field()}}
-                                {{--                            <div class="control edit-answer-area mb-3">--}}
-                                {{--                                --}}
-                                {{--                            </div>--}}
                                 <div class="control edit-answer-area mb-3" id="ckeditor">
                                     <ckeditor></ckeditor>
                                 </div>
@@ -100,7 +90,7 @@
                             </form>
                         </div>
                     @else
-                        <a href="{{url('login')}}" class="button is-success is-light">ログインして回答する</a>
+                        <a href="{{url('login')}}" class="button is-success is-light ">ログインして回答する</a>
                     @endif
                 </div>
                 <div class="card">
