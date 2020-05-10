@@ -35,3 +35,5 @@ Route::post('/question/follower', function (Request $request) {
 
 Route::post('/question/follow','QuestionFollowController@follow')->middleware('api');
 Route::post('/question/unfollow','QuestionFollowController@unfollow')->middleware('api');
+
+Route::post('/user/follower','UserController@info')->middleware('api');

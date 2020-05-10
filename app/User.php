@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'confirmation_token','api_token'
+        'name', 'email', 'password', 'avatar', 'confirmation_token', 'api_token'
     ];
 
     /**
@@ -37,7 +37,7 @@ class User extends Authenticatable
 
     public function follow()
     {
-        return $this->belongsToMany(Question::class,'user_question')->withTimestamps();
+        return $this->belongsToMany(Question::class, 'user_question')->withTimestamps();
 
     }
 
@@ -54,6 +54,13 @@ class User extends Authenticatable
     //このユーザーはこの質問をフォローしているか
     public function followed($question)
     {
-        return !!$this->follow()->where('question_id',$question)->count();
+        return !!$this->follow()->where('question_id', $question)->count();
+    }
+
+
+    //ユーザー関のフォロー関係
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'follower_id', 'followed_id')->withTimestamps();
     }
 }
