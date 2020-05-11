@@ -13,7 +13,7 @@ class FollowerController extends Controller
 
     public function __construct(UserRepository $user)
     {
-        $this->user=$user;
+        $this->user = $user;
     }
 
 
@@ -24,7 +24,7 @@ class FollowerController extends Controller
 
     public function answers(Request $request)
     {
-        return  $this->user->byId($request->get('user_id'))->answers->count();
+        return $this->user->byId($request->get('user_id'))->answers->count();
     }
 
     public function posts(Request $request)
