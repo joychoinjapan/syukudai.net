@@ -42,3 +42,4 @@ Route::post('/user/follower','FollowerController@info')->middleware('api');
 Route::get('/user/isfollowed/{followed_id}','FollowerController@followed')->middleware('api');
 
 //該当ユーザーをフォローする
+Route::post('/user/follow','FollowerController@follow')->middleware('api');
