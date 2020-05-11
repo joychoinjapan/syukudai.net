@@ -107,7 +107,11 @@
                     </header>
                     @foreach($question->answers as $answer)
                         <div class="card-content answer-block">
-                            <user-profile-pop name="{{$answer->user->name}}" field="Python"></user-profile-pop>
+                            <user-profile-pop name="{{$answer->user->name}}"
+                                              user="{{$answer->user->id}}"
+                                              login="{{Auth::user()?Auth::user()->id:null}}"
+                                              field="Python">
+                            </user-profile-pop>
                             <div class="content">
                                 {!!$answer->content!!}
                                 <br>

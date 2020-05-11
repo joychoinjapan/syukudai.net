@@ -1785,10 +1785,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserProfilePop.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserProfilePop.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserFollowButton.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserFollowButton.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1798,6 +1798,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "UserFollowButton.vue",
+  props: ['follower_id', 'followed_id'],
+  mounted: function mounted() {
+    var _this = this;
+
+    //該当回答のユーザーをすでにフォローしているか
+    axios.get('/api/user/isfollowed/' + this.followerAndFollowed.followed_id).then(function (response) {
+      _this.isFollowed = response.data.is_followed;
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  },
+  data: function data() {
+    return {
+      isFollowed: false,
+      followerAndFollowed: {
+        follower_id: this.follower_id,
+        followed_id: this.followed_id
+      }
+    };
+  },
+  computed: {
+    userIsFollowed: function userIsFollowed() {
+      return this.isFollowed ? '' : 'is-link';
+    },
+    text: function text() {
+      return this.isFollowed ? 'フォロー解除' : 'フォローする';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserProfilePop.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserProfilePop.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UserFollowButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserFollowButton */ "./resources/js/components/UserFollowButton.vue");
 //
 //
 //
@@ -1837,27 +1881,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserProfilePop",
+  components: {
+    UserFollowButton: _UserFollowButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: {
     name: String,
-    field: String
+    field: String,
+    login: Number | String,
+    user: Number | String
   },
   data: function data() {
     return {
       isActive: false,
       userInfo: {
         followers: 0,
-        answers: 0
-      }
+        answers: 0,
+        name: this.name
+      },
+      loginUserId: this.login,
+      answerUserId: this.user
     };
+  },
+  computed: {
+    showButtons: function showButtons() {
+      return !!this.loginUserId;
+    }
   },
   methods: {
     mouseEnter: function mouseEnter() {
       var _this = this;
 
       axios.post('/api/user/follower', {
-        'user_id': 4
+        'user_id': this.answerUserId
       }).then(function (response) {
         _this.userInfo.followers = response.data.followers;
         _this.userInfo.answers = response.data.answers;
@@ -6433,7 +6495,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.profile-small-box[data-v-91a25884]{\n    position: relative;\n    z-index: 1;\n}\n.profile-box[data-v-91a25884]{\n    position: absolute;\n    top: 50%;\n    z-index: 2;\n    width: 21rem;\n}\n.profile-block[data-v-91a25884]{\n    width: 6rem;\n}\n.media[data-v-91a25884]{\n    border-top: none;\n}\n.profile-text[data-v-91a25884]{\n    word-break:break-word;\n}\n.profile-info-container[data-v-91a25884]{\n    display: flex;\n}\n.button-container[data-v-91a25884]{\n    display: flex;\n    justify-content: space-between;\n}\n.button[data-v-91a25884]{\n    width:6rem\n}\n\n\n", ""]);
+exports.push([module.i, "\n.profile-small-box[data-v-91a25884] {\n    position: relative;\n    z-index: 1;\n}\n.profile-box[data-v-91a25884] {\n    position: absolute;\n    top: 50%;\n    z-index: 2;\n    width: 21rem;\n}\n.profile-block[data-v-91a25884] {\n    width: 6rem;\n}\n.media[data-v-91a25884] {\n    border-top: none;\n}\n.profile-text[data-v-91a25884] {\n    word-break: break-word;\n}\n.profile-info-container[data-v-91a25884] {\n    display: flex;\n}\n.button-container[data-v-91a25884] {\n    display: flex;\n    justify-content: space-between;\n}\n.button[data-v-91a25884] {\n    width: 7rem\n}\n\n\n", ""]);
 
 // exports
 
@@ -38248,6 +38310,34 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserFollowButton.vue?vue&type=template&id=bfa60dce&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserFollowButton.vue?vue&type=template&id=bfa60dce&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("button", {
+    staticClass: "button is-outlined",
+    class: _vm.userIsFollowed,
+    domProps: { textContent: _vm._s(_vm.text) }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserProfilePop.vue?vue&type=template&id=91a25884&scoped=true&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserProfilePop.vue?vue&type=template&id=91a25884&scoped=true& ***!
@@ -38294,7 +38384,23 @@ var render = function() {
           staticClass: "box profile-box"
         },
         [
-          _vm._m(1),
+          _c("article", { staticClass: "media" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "media-content" }, [
+              _c("div", { staticClass: "content" }, [
+                _c("p", [
+                  _c("strong", [_vm._v(_vm._s(_vm.userInfo.name))]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "profile-text" }, [
+                    _vm._v("経験3年目のエンジニア、案件の連絡はメールまで")
+                  ])
+                ])
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "profile-info-container" }, [
             _c("div", { staticClass: "profile-block" }, [
@@ -38312,7 +38418,43 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(3)
+          _c(
+            "div",
+            { staticClass: "container button-container mt-2" },
+            [
+              _c("user-follow-button", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showButtons,
+                    expression: "showButtons"
+                  }
+                ],
+                attrs: {
+                  followed_id: _vm.answerUserId,
+                  follower_id: _vm.loginUserId
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showButtons,
+                      expression: "showButtons"
+                    }
+                  ],
+                  staticClass: "button  is-info is-outlined"
+                },
+                [_vm._v("メッセージ")]
+              )
+            ],
+            1
+          )
         ]
       )
     ]
@@ -38338,30 +38480,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "media" }, [
-      _c("div", { staticClass: "media-left" }, [
-        _c("figure", { staticClass: "image is-64x64" }, [
-          _c("img", {
-            attrs: {
-              src: "https://bulma.io/images/placeholders/128x128.png",
-              alt: "Image"
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "media-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("p", [
-            _c("strong", [_vm._v("John Smith")]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("span", { staticClass: "profile-text" }, [
-              _vm._v("経験3年目のエンジニア、案件の連絡はメールまで")
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "media-left" }, [
+      _c("figure", { staticClass: "image is-64x64" }, [
+        _c("img", {
+          attrs: {
+            src: "https://bulma.io/images/placeholders/128x128.png",
+            alt: "Image"
+          }
+        })
       ])
     ])
   },
@@ -38373,20 +38499,6 @@ var staticRenderFns = [
       _c("p", [_vm._v("文章")]),
       _vm._v(" "),
       _c("strong", [_vm._v("12,8773")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container button-container mt-2" }, [
-      _c("button", { staticClass: "button  is-link is-outlined" }, [
-        _vm._v("フォロー")
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "button  is-info is-outlined" }, [
-        _vm._v("メッセージ")
-      ])
     ])
   }
 ]
@@ -50798,6 +50910,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuestionFollowButton_vue_vue_type_template_id_335891b4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuestionFollowButton_vue_vue_type_template_id_335891b4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/UserFollowButton.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/UserFollowButton.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UserFollowButton_vue_vue_type_template_id_bfa60dce_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserFollowButton.vue?vue&type=template&id=bfa60dce&scoped=true& */ "./resources/js/components/UserFollowButton.vue?vue&type=template&id=bfa60dce&scoped=true&");
+/* harmony import */ var _UserFollowButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserFollowButton.vue?vue&type=script&lang=js& */ "./resources/js/components/UserFollowButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UserFollowButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UserFollowButton_vue_vue_type_template_id_bfa60dce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UserFollowButton_vue_vue_type_template_id_bfa60dce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "bfa60dce",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/UserFollowButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/UserFollowButton.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/UserFollowButton.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserFollowButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./UserFollowButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserFollowButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserFollowButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/UserFollowButton.vue?vue&type=template&id=bfa60dce&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/UserFollowButton.vue?vue&type=template&id=bfa60dce&scoped=true& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserFollowButton_vue_vue_type_template_id_bfa60dce_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./UserFollowButton.vue?vue&type=template&id=bfa60dce&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserFollowButton.vue?vue&type=template&id=bfa60dce&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserFollowButton_vue_vue_type_template_id_bfa60dce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserFollowButton_vue_vue_type_template_id_bfa60dce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -20,7 +20,7 @@
                 <div class="media-content">
                     <div class="content">
                         <p>
-                           <strong>John Smith</strong>
+                            <strong>{{userInfo.name}}</strong>
                             <br>
                             <span class="profile-text">経験3年目のエンジニア、案件の連絡はメールまで</span>
                         </p>
@@ -33,8 +33,8 @@
                 <div class="profile-block"><p>フォロワー</p> <strong>{{userInfo.followers}}</strong></div>
             </div>
             <div class="container button-container mt-2">
-                <button class="button  is-link is-outlined">フォロー</button>
-                <button class="button  is-info is-outlined">メッセージ</button>
+                <user-follow-button :followed_id="answerUserId" :follower_id="loginUserId" v-show="showButtons"></user-follow-button>
+                <button class="button  is-info is-outlined" v-show="showButtons">メッセージ</button>
             </div>
         </div>
     </div>
@@ -42,74 +42,89 @@
 </template>
 
 <script>
+    import UserFollowButton from "./UserFollowButton";
+
     export default {
         name: "UserProfilePop",
-        props:{
-            name:String,
-            field:String
+        components: {UserFollowButton},
+        props: {
+            name: String,
+            field: String,
+            login: Number|String,
+            user:Number|String
         },
-        data(){
-            return{
-                isActive:false,
-                userInfo:{
-                    followers:0,
-                    answers:0
-                }
+        data() {
+            return {
+                isActive: false,
+                userInfo: {
+                    followers: 0,
+                    answers: 0,
+                    name:this.name
+                },
+                loginUserId:this.login,
+                answerUserId:this.user,
             }
         },
-        methods:{
-            mouseEnter(){
-                axios.post('/api/user/follower',{'user_id':4})
-                .then(response=>{
-                    this.userInfo.followers=response.data.followers;
-                    this.userInfo.answers=response.data.answers;
-                    this.isActive=true
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
+        computed:{
+            showButtons(){
+                return !!this.loginUserId
+            }
+        },
+        methods: {
+            mouseEnter() {
+                axios.post('/api/user/follower', {'user_id': this.answerUserId})
+                    .then(response => {
+                        this.userInfo.followers = response.data.followers;
+                        this.userInfo.answers = response.data.answers;
+                        this.isActive = true
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
             },
-            mouseOut(){
-                this.isActive=false
+            mouseOut() {
+                this.isActive = false
             }
         }
     }
 </script>
 
 <style scoped>
-    .profile-small-box{
+    .profile-small-box {
         position: relative;
         z-index: 1;
     }
 
-    .profile-box{
+    .profile-box {
         position: absolute;
         top: 50%;
         z-index: 2;
         width: 21rem;
     }
 
-    .profile-block{
+    .profile-block {
         width: 6rem;
-     }
-    .media{
+    }
+
+    .media {
         border-top: none;
     }
 
-    .profile-text{
-        word-break:break-word;
+    .profile-text {
+        word-break: break-word;
     }
 
-    .profile-info-container{
+    .profile-info-container {
         display: flex;
     }
-    .button-container{
+
+    .button-container {
         display: flex;
         justify-content: space-between;
     }
 
-    .button{
-        width:6rem
+    .button {
+        width: 7rem
     }
 
 
