@@ -58,14 +58,19 @@ class User extends Authenticatable
     }
 
 
-    //ユーザー関のフォロー関係
-    public function followers()
+    //ユーザーがフォロしている人
+    public function isFollowed()
     {
-        return $this->belongsToMany(self::class, 'followers', 'follower_id', 'followed_id')->withTimestamps();
+        return $this->belongsToMany(self::class, 'followers', 'follower_id','followed_id')->withTimestamps();
+    }
+
+    //ユーザーのフォロワー
+    public function followers(){
+        return $this->belongsToMany(self::class, 'followers', 'followed_id','follower_id')->withTimestamps();
     }
 
     public function followThisUser($user)
     {
-        return $this->followers()->toggle($user);
+        return $this->isFollowed()->toggle($user);
     }
 }

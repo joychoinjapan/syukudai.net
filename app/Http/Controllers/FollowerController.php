@@ -41,14 +41,16 @@ class FollowerController extends Controller
 
     public function followed($followed_id)
     {
-        $is_followed = $this->user->byId($followed_id)->followers->where('id', 5)->count();
+        $is_followed = $this->user->byId($followed_id)->followers->where('id', Auth::guard('api')->user()->id)->count();
         return response()->json(['is_followed' => !!$is_followed]);
     }
 
     public function follow(Request $request)
     {
         $userToFollow = $this->user->byId($request->get('user_id'));
-        Auth::guard('api')->user()->followThisUser($userToFollow);
+        $res = Auth::guard('api')->user()->followThisUser($userToFollow);
+        return response()->json(['isFollowed' => !!$res["attached"]]);
+
     }
 
 }

@@ -1798,6 +1798,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserFollowButton.vue",
   props: ['follower_id', 'followed_id'],
@@ -1826,6 +1830,23 @@ __webpack_require__.r(__webpack_exports__);
     },
     text: function text() {
       return this.isFollowed ? 'フォロー解除' : 'フォローする';
+    }
+  },
+  methods: {
+    follow: function follow() {
+      var _this2 = this;
+
+      axios({
+        method: 'post',
+        url: '/api/user/follow',
+        data: {
+          user_id: this.followerAndFollowed.followed_id
+        }
+      }).then(function (response) {
+        _this2.isFollowed = response.data.isFollowed;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -38328,7 +38349,8 @@ var render = function() {
   return _c("button", {
     staticClass: "button is-outlined",
     class: _vm.userIsFollowed,
-    domProps: { textContent: _vm._s(_vm.text) }
+    domProps: { textContent: _vm._s(_vm.text) },
+    on: { click: _vm.follow }
   })
 }
 var staticRenderFns = []
