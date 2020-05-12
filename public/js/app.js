@@ -38444,20 +38444,14 @@ var render = function() {
             "div",
             { staticClass: "container button-container mt-2" },
             [
-              _c("user-follow-button", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.showButtons,
-                    expression: "showButtons"
-                  }
-                ],
-                attrs: {
-                  followed_id: _vm.answerUserId,
-                  follower_id: _vm.loginUserId
-                }
-              }),
+              _vm.showButtons
+                ? _c("user-follow-button", {
+                    attrs: {
+                      followed_id: _vm.answerUserId,
+                      follower_id: _vm.loginUserId
+                    }
+                  })
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "button",

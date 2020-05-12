@@ -33,7 +33,7 @@
                 <div class="profile-block"><p>フォロワー</p> <strong>{{userInfo.followers}}</strong></div>
             </div>
             <div class="container button-container mt-2">
-                <user-follow-button :followed_id="answerUserId" :follower_id="loginUserId" v-show="showButtons"></user-follow-button>
+                <user-follow-button :followed_id="answerUserId" :follower_id="loginUserId" v-if="showButtons"></user-follow-button>
                 <button class="button  is-info is-outlined" v-show="showButtons">メッセージ</button>
             </div>
         </div>
