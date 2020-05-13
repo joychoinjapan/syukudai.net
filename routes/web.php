@@ -27,3 +27,5 @@ Route::resource('questions', 'QuestionController');
 Route::post('question/{question}/answer','AnswersController@store');
 //Route::get('question/{question}/follow','QuestionFollowController@follow')->middleware('auth')->name('question.follow');
 //Route::get('question/{question}/unfollow','QuestionFollowController@unfollow')->middleware('auth')->name('question.unfollow');
+
+Route::get('notifications','NotificationsController@index');
