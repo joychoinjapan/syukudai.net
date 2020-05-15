@@ -106,18 +106,23 @@
                         </a>
                     </header>
                     @foreach($question->answers as $answer)
-                        <div class="card-content answer-block">
-                            <user-profile-pop name="{{$answer->user->name}}"
-                                              user="{{$answer->user->id}}"
-                                              login="{{Auth::user()?Auth::user()->id:null}}"
-                                              field="Python">
-                            </user-profile-pop>
-                            <div class="content">
-                                {!!$answer->content!!}
-                                <br>
-                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                            <div class="card-content answer-block">
+                                <user-profile-pop name="{{$answer->user->name}}"
+                                                  user="{{$answer->user->id}}"
+                                                  login="{{Auth::user()?Auth::user()->id:null}}"
+                                                  field="Python">
+                                </user-profile-pop>
+                                <div class="content">
+                                    {!!$answer->content!!}
+                                    <br>
+                                    <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                                </div>
+                                <div class="vote-block">
+                                    <button class="button is-info is-light"><i class="fas fa-thumbs-up mr-1"></i>賛成 2</button>
+                                    <button class="button is-light"><i class="fas fa-comment mr-1"></i>コメント</button>
+                                    <button class="button is-light is-success"><i class="fas fa-folder mr-1"></i>ストック</button>
+                                </div>
                             </div>
-                        </div>
                     @endforeach
                     <div class="card-content answer-block">
                         <div class="media">

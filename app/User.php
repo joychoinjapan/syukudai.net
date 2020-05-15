@@ -73,4 +73,15 @@ class User extends Authenticatable
     {
         return $this->isFollowed()->toggle($user);
     }
+
+    //ユーザーはアンサーに対しての投票
+    public function votes()
+    {
+        return $this->belongsToMany(Answer::class,'votes')->withTimestamps();
+    }
+
+    public function voteFor($answer)
+    {
+        return $this->votes()->toggle($answer);
+    }
 }

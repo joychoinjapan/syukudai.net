@@ -185,6 +185,8 @@ a:focus {
     -moz-outline-style: none;
 }
 
+
+
 .answer-block{
     margin: 0px 30px 30px 30px;
     border-bottom:1px solid rgba(0, 0, 0, 0.125) ;
@@ -192,6 +194,10 @@ a:focus {
 
 .answer-block:last-child {
     border-bottom: 0px
+}
+
+.gray{
+    color:rgb(74, 74, 74)!important;
 }
 
 .list-button{
