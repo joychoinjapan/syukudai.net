@@ -18,6 +18,7 @@ window.Vue = require('vue');
 
 Vue.component('question-follow-button',require('./components/QuestionFollowButton').default);
 Vue.component('user-profile-pop',require('./components/UserProfilePop').default);
+Vue.component('user-vote-button',require('./components/UserVoteButton').default);
 Vue.use( CKEditor );
 Vue.component('editor',require('./components/Editor').default);
 

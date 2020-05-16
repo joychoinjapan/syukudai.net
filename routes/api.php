@@ -43,3 +43,12 @@ Route::get('/user/isfollowed/{followed_id}','FollowerController@followed')->midd
 
 //該当ユーザーをフォローする
 Route::post('/user/follow','FollowerController@follow')->middleware('api');
+
+
+
+//アンサーの賛成数
+Route::get('/answer/{id}/favor','VoteController@favor')->middleware('api');
+//アンサーに賛成済？
+Route::get('/answer/{id}/voted','VoteController@voted')->middleware('api');
+//アンサーを賛成する・賛成の取り消し
+Route::post('/answer/vote','VoteController@vote')->middleware('api');

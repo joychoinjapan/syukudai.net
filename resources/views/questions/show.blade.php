@@ -118,7 +118,7 @@
                                     <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                                 </div>
                                 <div class="vote-block">
-                                    <button class="button is-info is-light"><i class="fas fa-thumbs-up mr-1"></i>賛成 2</button>
+                                    <user-vote-button votes_count="{{$answer->votes_count}}" answer_id="{{$answer->id}}"></user-vote-button>
                                     <button class="button is-light"><i class="fas fa-comment mr-1"></i>コメント</button>
                                     <button class="button is-light is-success"><i class="fas fa-folder mr-1"></i>ストック</button>
                                 </div>

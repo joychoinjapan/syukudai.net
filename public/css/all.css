@@ -196,8 +196,8 @@ a:focus {
     border-bottom: 0px
 }
 
-.gray{
-    color:rgb(74, 74, 74)!important;
+.custom-gray{
+    color:rgb(74, 74, 74);
 }
 
 .list-button{

@@ -74,14 +74,21 @@ class User extends Authenticatable
         return $this->isFollowed()->toggle($user);
     }
 
-    //ユーザーはアンサーに対しての投票
+    //ユーザーはアンサーに対しての投票「賛成」
     public function votes()
     {
         return $this->belongsToMany(Answer::class,'votes')->withTimestamps();
     }
 
+    //賛成と賛成の解除
     public function voteFor($answer)
     {
         return $this->votes()->toggle($answer);
+    }
+
+    //賛成済
+    public function hasVoted($id)
+    {
+        return !!$this->votes()->where('question_id',$id)->count();
     }
 }
