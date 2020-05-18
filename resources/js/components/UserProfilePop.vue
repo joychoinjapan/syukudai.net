@@ -10,7 +10,7 @@
             <p class="title is-6 mb-1">{{name}}</p>
             <span class="tag is-info is-light is-rounded">{{field}}</span>
         </div>
-        <div class="box profile-box" v-show="isActive">
+        <div class="box profile-box" v-if="isActive">
             <article class="media">
                 <div class="media-left">
                     <figure class="image is-64x64">
@@ -39,8 +39,6 @@
         </div>
         <message-modal v-show="showModal"  @close="closeModal"></message-modal>
     </div>
-
-
 </template>
 
 <script>
@@ -102,7 +100,6 @@
 <style scoped>
     .profile-small-box {
         position: relative;
-        z-index: 1;
     }
 
     .profile-box {

@@ -106,7 +106,7 @@
                         </a>
                     </header>
                     @foreach($question->answers as $answer)
-                            <div class="card-content answer-block">
+                    <div class="card-content answer-block">
                                 <user-profile-pop name="{{$answer->user->name}}"
                                                   user="{{$answer->user->id}}"
                                                   login="{{Auth::user()?Auth::user()->id:null}}"

@@ -12,10 +12,14 @@
 
 <script>
     export default {
-        name: "MessageModal"
+        name: "MessageModal",
     }
 </script>
 
 <style scoped>
+    .modal{
+        z-index: 3;
+    }
+
 
 </style>
