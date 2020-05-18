@@ -91,4 +91,10 @@ class User extends Authenticatable
     {
         return !!$this->votes()->where('question_id',$id)->count();
     }
+
+    //メッセージ
+    public function message()
+    {
+        return $this->hasMany(Message::class,'to_user_id','id');
+    }
 }

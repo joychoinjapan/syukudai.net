@@ -1716,6 +1716,33 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessageModal.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MessageModal.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "MessageModal"
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/QuestionFollowButton.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/QuestionFollowButton.vue?vue&type=script&lang=js& ***!
@@ -1863,6 +1890,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UserFollowButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserFollowButton */ "./resources/js/components/UserFollowButton.vue");
+/* harmony import */ var _MessageModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MessageModal */ "./resources/js/components/MessageModal.vue");
+//
+//
 //
 //
 //
@@ -1907,10 +1937,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserProfilePop",
   components: {
-    UserFollowButton: _UserFollowButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+    UserFollowButton: _UserFollowButton__WEBPACK_IMPORTED_MODULE_0__["default"],
+    MessageModal: _MessageModal__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
     name: String,
@@ -1927,7 +1959,8 @@ __webpack_require__.r(__webpack_exports__);
         name: this.name
       },
       loginUserId: this.login,
-      answerUserId: this.user
+      answerUserId: this.user,
+      showModal: false
     };
   },
   computed: {
@@ -1951,6 +1984,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     mouseOut: function mouseOut() {
       this.isActive = false;
+    },
+    openModal: function openModal() {
+      this.showModal = true;
+    },
+    closeModal: function closeModal() {
+      this.showModal = false;
     }
   }
 });
@@ -38363,6 +38402,46 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessageModal.vue?vue&type=template&id=9decf05e&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MessageModal.vue?vue&type=template&id=9decf05e&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "modal is-active" }, [
+    _c("div", { staticClass: "modal-background" }, [_vm._v("background")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-content" }, [
+      _c("div", { staticClass: "box" }, [_vm._t("default")], 2)
+    ]),
+    _vm._v(" "),
+    _c("button", {
+      staticClass: "modal-close is-large",
+      attrs: { "aria-label": "close" },
+      on: {
+        click: function($event) {
+          return _vm.$emit("close")
+        }
+      }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/QuestionFollowButton.vue?vue&type=template&id=335891b4&scoped=true&":
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/QuestionFollowButton.vue?vue&type=template&id=335891b4&scoped=true& ***!
@@ -38525,7 +38604,8 @@ var render = function() {
                       expression: "showButtons"
                     }
                   ],
-                  staticClass: "button  is-info is-outlined"
+                  staticClass: "button  is-info is-outlined",
+                  on: { click: _vm.openModal }
                 },
                 [_vm._v("メッセージ")]
               )
@@ -38533,8 +38613,21 @@ var render = function() {
             1
           )
         ]
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _c("message-modal", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showModal,
+            expression: "showModal"
+          }
+        ],
+        on: { close: _vm.closeModal }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = [
@@ -50815,6 +50908,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('question-follow-button', __webpack_require__(/*! ./components/QuestionFollowButton */ "./resources/js/components/QuestionFollowButton.vue")["default"]);
 Vue.component('user-profile-pop', __webpack_require__(/*! ./components/UserProfilePop */ "./resources/js/components/UserProfilePop.vue")["default"]);
 Vue.component('user-vote-button', __webpack_require__(/*! ./components/UserVoteButton */ "./resources/js/components/UserVoteButton.vue")["default"]);
+Vue.component('message-modal', __webpack_require__(/*! ./components/MessageModal */ "./resources/js/components/MessageModal.vue")["default"]);
 Vue.use(ckeditor4_vue__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.component('editor', __webpack_require__(/*! ./components/Editor */ "./resources/js/components/Editor.vue")["default"]);
 var app = new Vue({
@@ -50957,6 +51051,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Editor_vue_vue_type_template_id_1dbb5118_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Editor_vue_vue_type_template_id_1dbb5118_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/MessageModal.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/MessageModal.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MessageModal_vue_vue_type_template_id_9decf05e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MessageModal.vue?vue&type=template&id=9decf05e&scoped=true& */ "./resources/js/components/MessageModal.vue?vue&type=template&id=9decf05e&scoped=true&");
+/* harmony import */ var _MessageModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MessageModal.vue?vue&type=script&lang=js& */ "./resources/js/components/MessageModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MessageModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MessageModal_vue_vue_type_template_id_9decf05e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MessageModal_vue_vue_type_template_id_9decf05e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "9decf05e",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MessageModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MessageModal.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/MessageModal.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MessageModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessageModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MessageModal.vue?vue&type=template&id=9decf05e&scoped=true&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/MessageModal.vue?vue&type=template&id=9decf05e&scoped=true& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageModal_vue_vue_type_template_id_9decf05e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MessageModal.vue?vue&type=template&id=9decf05e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessageModal.vue?vue&type=template&id=9decf05e&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageModal_vue_vue_type_template_id_9decf05e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageModal_vue_vue_type_template_id_9decf05e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
