@@ -1737,6 +1737,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MessageModal"
 });
@@ -6614,7 +6630,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal[data-v-9decf05e]{\n    z-index: 3;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.modal[data-v-9decf05e]{\n    z-index: 3;\n}\n.message-input[data-v-9decf05e]{\n    width: 100%;\n    border: none;\n    resize:none;\n    background: transparent;\n    max-height: 40em;\n    min-height: 8em;\n}\n.message[data-v-9decf05e]{\n    width: 60%;\n}\n.message-to[data-v-9decf05e]{\n    float: left;\n}\n.message-from[data-v-9decf05e]{\n    float: right;\n}\n.message-input[data-v-9decf05e]{\n    outline:none;\n}\nbutton[data-v-9decf05e]{\n    float:right;\n}\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38467,22 +38483,66 @@ var render = function() {
   return _c("div", { staticClass: "modal is-active" }, [
     _c("div", { staticClass: "modal-background" }, [_vm._v("background")]),
     _vm._v(" "),
-    _c("div", { staticClass: "modal-content" }, [
-      _c("div", { staticClass: "box" }, [_vm._t("default")], 2)
-    ]),
-    _vm._v(" "),
-    _c("button", {
-      staticClass: "modal-close is-large",
-      attrs: { "aria-label": "close" },
-      on: {
-        click: function($event) {
-          return _vm.$emit("close")
-        }
-      }
-    })
+    _c("div", { staticClass: "modal-card" }, [
+      _c("header", { staticClass: "modal-card-head" }, [
+        _c("p", { staticClass: "modal-card-title" }, [_vm._v("Shu Wei")]),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "delete",
+          attrs: { "aria-label": "close" },
+          on: {
+            click: function($event) {
+              return _vm.$emit("close")
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1)
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "modal-card-body" }, [
+      _c("article", { staticClass: "message message-to" }, [
+        _c("div", { staticClass: "message-body" }, [
+          _vm._v(
+            "\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("article", { staticClass: "message is-primary message-from" }, [
+        _c("div", { staticClass: "message-body" }, [
+          _vm._v(
+            "\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                "
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "modal-card-body" }, [
+      _c("textarea", {
+        staticClass: "message-input",
+        attrs: { placeholder: "メッセージをご入力ください" }
+      }),
+      _vm._v(" "),
+      _c("button", { staticClass: "button is-primary is-light" }, [
+        _vm._v("送信")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
