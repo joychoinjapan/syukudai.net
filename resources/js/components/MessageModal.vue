@@ -13,7 +13,7 @@
                     </div>
                 </article>
                 <article class="message is-primary message-from">
-                    <div class="message-body">
+                    <div class="message-body right-body">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </div>
                 </article>
@@ -60,6 +60,10 @@
 
     .message-input{
         outline:none;
+    }
+
+    .right-body{
+        border-width: 0 4px 0 0;
     }
 
     button{

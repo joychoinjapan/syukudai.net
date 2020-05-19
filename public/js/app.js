@@ -6630,7 +6630,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal[data-v-9decf05e]{\n    z-index: 3;\n}\n.message-input[data-v-9decf05e]{\n    width: 100%;\n    border: none;\n    resize:none;\n    background: transparent;\n    max-height: 40em;\n    min-height: 8em;\n}\n.message[data-v-9decf05e]{\n    width: 60%;\n}\n.message-to[data-v-9decf05e]{\n    float: left;\n}\n.message-from[data-v-9decf05e]{\n    float: right;\n}\n.message-input[data-v-9decf05e]{\n    outline:none;\n}\nbutton[data-v-9decf05e]{\n    float:right;\n}\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.modal[data-v-9decf05e]{\n    z-index: 3;\n}\n.message-input[data-v-9decf05e]{\n    width: 100%;\n    border: none;\n    resize:none;\n    background: transparent;\n    max-height: 40em;\n    min-height: 8em;\n}\n.message[data-v-9decf05e]{\n    width: 60%;\n}\n.message-to[data-v-9decf05e]{\n    float: left;\n}\n.message-from[data-v-9decf05e]{\n    float: right;\n}\n.message-input[data-v-9decf05e]{\n    outline:none;\n}\n.right-body[data-v-9decf05e]{\n    border-width: 0 4px 0 0;\n}\nbutton[data-v-9decf05e]{\n    float:right;\n}\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38519,7 +38519,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("article", { staticClass: "message is-primary message-from" }, [
-        _c("div", { staticClass: "message-body" }, [
+        _c("div", { staticClass: "message-body right-body" }, [
           _vm._v(
             "\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                "
           )
