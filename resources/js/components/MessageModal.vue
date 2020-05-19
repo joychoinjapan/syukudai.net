@@ -7,70 +7,101 @@
                 <button class="delete" aria-label="close" @click="$emit('close')"></button>
             </header>
             <section class="modal-card-body">
-                <article class="message message-to">
-                    <div class="message-body">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </article>
-                <article class="message is-primary message-from">
-                    <div class="message-body right-body">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </article>
+                <article-you></article-you>
+                <article-me></article-me>
             </section>
             <section class="modal-card-body">
-               <textarea class="message-input" placeholder="メッセージをご入力ください"></textarea>
-               <button class="button is-primary is-light">送信</button>
+                <textarea class="message-input" placeholder="メッセージをご入力ください" v-model="messageContent"></textarea>
+                <button class="button is-info" :class="[isSending]"　
+                        @click="store" v-text="text" :disabled="isButtonDisabled">
+                </button>
             </section>
         </div>
     </div>
 </template>
 
 <script>
+    import ArticleMe from "./ArticleMe";
+    import ArticleYou from "./ArticleYou";
     export default {
         name: "MessageModal",
+        components: {ArticleMe,ArticleYou},
+        props: ['user_id'],
+        data() {
+            return {
+                messageContent: '',
+                Sending: false
+            }
+        },
+        computed: {
+            isSending() {
+                return this.Sending ? 'is-loading' : 'is-light';
+            },
+            text() {
+                return this.Sending ? '送信中' : '送信';
+            },
+            isButtonDisabled() {
+                return !this.messageContent;
+            }
+        },
+        methods: {
+            store() {
+                this.Sending = true;
+                axios({
+                    method: 'post',
+                    url: '/api/message/store',
+                    data: {
+                        user_id: this.user_id,
+                        body: this.messageContent
+                    }
+                }).then(response => {
+                    this.messageContent = null;
+                    this.Sending = false;
+                }).catch(error => {
+                    this.Sending = false;
+                })
+            }
+        }
     }
 </script>
 
 <style scoped>
-    .modal{
+    .modal {
         z-index: 3;
     }
 
-    .message-input{
+    .message-input {
         width: 100%;
         border: none;
-        resize:none;
+        resize: none;
         background: transparent;
         max-height: 40em;
         min-height: 8em;
     }
 
-    .message{
+    .message {
         width: 60%;
     }
 
-    .message-to{
+    .message-to {
         float: left;
     }
 
-    .message-from{
+    .message-from {
         float: right;
     }
 
-    .message-input{
-        outline:none;
+    .message-input {
+        outline: none;
     }
 
-    .right-body{
+    .right-body {
         border-width: 0 4px 0 0;
     }
 
-    button{
-        float:right;
+    button {
+        float: right;
     }
-
-
 
 
 </style>

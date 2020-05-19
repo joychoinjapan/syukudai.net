@@ -37,7 +37,7 @@
                 <button class="button  is-info is-outlined" v-show="showButtons" @click="openModal">メッセージ</button>
             </div>
         </div>
-        <message-modal v-show="showModal"  @close="closeModal"></message-modal>
+        <message-modal v-show="showModal"  @close="closeModal" :user_id="answerUserId"></message-modal>
     </div>
 </template>
 

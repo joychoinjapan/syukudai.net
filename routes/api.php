@@ -52,3 +52,6 @@ Route::get('/answer/{id}/favor','VoteController@favor')->middleware('api');
 Route::get('/answer/{id}/voted','VoteController@voted')->middleware('api');
 //アンサーを賛成する・賛成の取り消し
 Route::post('/answer/vote','VoteController@vote')->middleware('api');
+
+//メッセージを送る
+Route::post('/message/store','MessageController@store')->middleware('api');
