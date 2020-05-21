@@ -10,7 +10,7 @@
             <p class="title is-6 mb-1">{{name}}</p>
             <span class="tag is-info is-light is-rounded">{{field}}</span>
         </div>
-        <div class="box profile-box" v-if="isActive">
+        <div class="box profile-box" v-show="isActive">
             <article class="media">
                 <div class="media-left">
                     <figure class="image is-64x64">
@@ -20,7 +20,7 @@
                 <div class="media-content">
                     <div class="content">
                         <p>
-                            <strong>{{userInfo.name}}</strong>
+                            <strong>≈</strong>
                             <br>
                             <span class="profile-text">経験3年目のエンジニア、案件の連絡はメールまで</span>
                         </p>
@@ -37,7 +37,7 @@
                 <button class="button  is-info is-outlined" v-show="showButtons" @click="openModal">メッセージ</button>
             </div>
         </div>
-        <message-modal v-show="showModal"  @close="closeModal" :user_id="answerUserId"></message-modal>
+        <message-modal v-if="showModal"  @close="closeModal" :user_id="answerUserId" :user_name="name"></message-modal>
     </div>
 </template>
 
@@ -53,6 +53,16 @@
             field: String,
             login: Number|String,
             user:Number|String,
+        },
+        mounted() {
+            axios.post('/api/user/follower', {'user_id': this.answerUserId})
+                .then(response => {
+                    this.userInfo.followers = response.data.followers;
+                    this.userInfo.answers = response.data.answers;
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
         },
         data() {
             return {
@@ -74,15 +84,7 @@
         },
         methods: {
             mouseEnter() {
-                axios.post('/api/user/follower', {'user_id': this.answerUserId})
-                    .then(response => {
-                        this.userInfo.followers = response.data.followers;
-                        this.userInfo.answers = response.data.answers;
-                        this.isActive = true
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
+                this.isActive = true
             },
             mouseOut() {
                 this.isActive = false

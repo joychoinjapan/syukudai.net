@@ -55,3 +55,6 @@ Route::post('/answer/vote','VoteController@vote')->middleware('api');
 
 //メッセージを送る
 Route::post('/message/store','MessageController@store')->middleware('api');
+
+//メッセージリスト生成
+Route::post('/message/list','MessageController@index')->middleware('api');
