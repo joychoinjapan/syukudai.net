@@ -20,7 +20,7 @@
                 <div class="media-content">
                     <div class="content">
                         <p>
-                            <strong>≈</strong>
+                            <strong>{{name}}</strong>
                             <br>
                             <span class="profile-text">経験3年目のエンジニア、案件の連絡はメールまで</span>
                         </p>

@@ -38832,7 +38832,23 @@ var render = function() {
           staticClass: "box profile-box"
         },
         [
-          _vm._m(1),
+          _c("article", { staticClass: "media" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "media-content" }, [
+              _c("div", { staticClass: "content" }, [
+                _c("p", [
+                  _c("strong", [_vm._v(_vm._s(_vm.name))]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "profile-text" }, [
+                    _vm._v("経験3年目のエンジニア、案件の連絡はメールまで")
+                  ])
+                ])
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "profile-info-container" }, [
             _c("div", { staticClass: "profile-block" }, [
@@ -38915,30 +38931,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "media" }, [
-      _c("div", { staticClass: "media-left" }, [
-        _c("figure", { staticClass: "image is-64x64" }, [
-          _c("img", {
-            attrs: {
-              src: "https://bulma.io/images/placeholders/128x128.png",
-              alt: "Image"
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "media-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("p", [
-            _c("strong", [_vm._v("≈")]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("span", { staticClass: "profile-text" }, [
-              _vm._v("経験3年目のエンジニア、案件の連絡はメールまで")
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "media-left" }, [
+      _c("figure", { staticClass: "image is-64x64" }, [
+        _c("img", {
+          attrs: {
+            src: "https://bulma.io/images/placeholders/128x128.png",
+            alt: "Image"
+          }
+        })
       ])
     ])
   },
