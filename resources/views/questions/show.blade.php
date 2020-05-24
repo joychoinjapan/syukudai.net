@@ -49,10 +49,12 @@
                         @else
                             <p class="control">
                                 <question-follow-button question="{{$question->id}}"
-                                                        user="{{Auth::id()}}"></question-follow-button>
-                                <button class="button is-link is-outlined is-small">
+                                                        user="{{Auth::id()}}">
+                                </question-follow-button>
+                                <button class="button is-link is-outlined ">
                                     答える
                                 </button>
+                                <comments-button question="{{$question->id}}" v-on:show="showCommentModal"></comments-button>
                             </p>
                         @endif
                 </div>
@@ -170,7 +172,9 @@
                     </div>
                 </div>
             </div>
+            <comments v-show="displayComments" v-on:close="closeCommentModal"></comments>
         </div>
+
     </div>
 @endsection
 @section('js')

@@ -16,14 +16,27 @@ window.Vue = require('vue');
  */
 
 
-Vue.component('question-follow-button',require('./components/QuestionFollowButton').default);
-Vue.component('user-profile-pop',require('./components/UserProfilePop').default);
-Vue.component('user-vote-button',require('./components/UserVoteButton').default);
-Vue.component('message-modal',require('./components/MessageModal').default);
-Vue.use( CKEditor );
-Vue.component('editor',require('./components/Editor').default);
+Vue.component('question-follow-button', require('./components/QuestionFollowButton').default);
+Vue.component('user-profile-pop', require('./components/UserProfilePop').default);
+Vue.component('user-vote-button', require('./components/UserVoteButton').default);
+Vue.component('message-modal', require('./components/MessageModal').default);
+Vue.component('comments-button', require('./components/CommentsButton').default);
+Vue.component('comments', require('./components/Comments').default);
+Vue.use(CKEditor);
+Vue.component('editor', require('./components/Editor').default);
 
 
 const app = new Vue({
-    el: '#app'
-});
+        el: '#app',
+        data: {
+            displayComments: false
+        },
+        methods: {
+            showCommentModal() {
+                this.displayComments = true;
+            },
+            closeCommentModal() {
+                this.displayComments = false;
+            }
+        }
+    });

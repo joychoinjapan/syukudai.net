@@ -110,13 +110,9 @@
         width: 60%;
     }
 
-
-
     .message-input {
         outline: none;
     }
-
-
 
     button {
         float: right;

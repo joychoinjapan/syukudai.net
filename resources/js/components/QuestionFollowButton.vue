@@ -1,5 +1,5 @@
 <template>
-    <button class="button is-link is-small" :class="isFollowed"
+    <button class="button is-link" :class="isFollowed"
             v-text="text"
             v-on:click="follow">
     </button>
