@@ -13,7 +13,7 @@ class UserMailer extends Mailer
     {
         $data = [
             'url'=>'http://zhihu.test',
-            'name'=>Auth::guard('api')->user()->name
+            'name'=>user('api')->name
         ];
 
         $this->sendto('Ask_User_Follower',$email,$data);

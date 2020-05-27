@@ -21,7 +21,7 @@ class MessageRepositories
 
     public function selectMessageByUser($user_id)
     {
-        $me_id=Auth::guard('api')->user()->id;
+        $me_id=user('api')->id;
         $messages = Message::whereIn('from_user_id',[$user_id,$me_id])
             ->whereIn('to_user_id',[$user_id,$me_id])->get();
 

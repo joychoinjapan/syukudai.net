@@ -48,7 +48,7 @@ class CommentController extends Controller
     {
         $model = $this->getModelNameFromType($request->get('type'));
         $comment = $this->commentRepository->create([
-            'user_id' => Auth::guard('api')->user()->id,
+            'user_id' => user('api')->id,
             'body' => $request->get('body'),
             'commentable_id'=> $request->get('id'),
             'commentable_type' => $model
