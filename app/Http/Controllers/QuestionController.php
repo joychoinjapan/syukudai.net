@@ -135,4 +135,13 @@ class QuestionController extends Controller
         abort(403, 'Forbidden');
     }
 
+    public function topic(Request $request)
+    {
+        $topics = Topic::select(['id', 'name'])
+            ->where('name', 'like', '%' . $request->query('q') . '%')
+            ->get();
+
+        return $topics;
+    }
+
 }

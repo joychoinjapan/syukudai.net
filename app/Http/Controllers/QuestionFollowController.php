@@ -27,4 +27,12 @@ class QuestionFollowController extends Controller
         return response()->json(['followed' => false]);
     }
 
+    public function isFollowed(Request $request)
+    {
+        $followed = \App\Follow::where('question_id', $request->get('question'))
+            ->where('user_id', $request->get('user'))
+            ->count();
+        return response()->json(['followed' => !!$followed]);
+    }
+
 }
