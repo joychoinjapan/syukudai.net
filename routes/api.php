@@ -58,3 +58,12 @@ Route::post('/message/store','MessageController@store')->middleware('api');
 
 //メッセージリスト生成
 Route::post('/message/list','MessageController@index')->middleware('api');
+
+//回答のコメントリストを生成
+Route::get('/answer/{id}/comments','CommentController@answers');
+//質問のコメントリストを生成
+Route::get('/question/{id}/comments','CommentController@questions');
+
+//コメントを送信
+Route::post('comment','CommentController@store')->middleware('api');
+

@@ -54,7 +54,12 @@
                                 <button class="button is-link is-outlined ">
                                     答える
                                 </button>
-                                <comments-button question="{{$question->id}}" v-on:show="showCommentModal"></comments-button>
+                                <question-comments-button
+                                    id="{{$question->id}}"
+                                    type="question"
+                                    count="{{$question->comments()->count()}}"
+                                    v-on:show="showCommentModal">
+                                </question-comments-button>
                             </p>
                         @endif
                 </div>
@@ -121,7 +126,10 @@
                                 </div>
                                 <div class="vote-block">
                                     <user-vote-button votes_count="{{$answer->votes_count}}" answer_id="{{$answer->id}}"></user-vote-button>
-                                    <button class="button is-light"><i class="fas fa-comment mr-1"></i>コメント</button>
+                                    <answer-comments-button v-on:show="showCommentModal"
+                                                              type="answer"
+                                                              id="{{$answer->id}}">
+                                    </answer-comments-button>
                                     <button class="button is-light is-success"><i class="fas fa-folder mr-1"></i>ストック</button>
                                 </div>
                             </div>
@@ -172,7 +180,12 @@
                     </div>
                 </div>
             </div>
-            <comments v-show="displayComments" v-on:close="closeCommentModal"></comments>
+            <comments v-show="displayComments"
+                      v-on:close="closeCommentModal"
+                      :type=type
+                      :id=id
+                      :lists=commentListing>
+            </comments>
         </div>
 
     </div>

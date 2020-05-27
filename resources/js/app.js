@@ -20,23 +20,38 @@ Vue.component('question-follow-button', require('./components/QuestionFollowButt
 Vue.component('user-profile-pop', require('./components/UserProfilePop').default);
 Vue.component('user-vote-button', require('./components/UserVoteButton').default);
 Vue.component('message-modal', require('./components/MessageModal').default);
-Vue.component('comments-button', require('./components/CommentsButton').default);
+Vue.component('answer-comments-button', require('./components/AnswerCommentsButton').default);
 Vue.component('comments', require('./components/Comments').default);
-Vue.use(CKEditor);
+Vue.component('question-comments-button', require('./components/QuestionCommentsButton').default),
+    Vue.use(CKEditor);
 Vue.component('editor', require('./components/Editor').default);
 
 
 const app = new Vue({
-        el: '#app',
-        data: {
-            displayComments: false
+    el: '#app',
+    data: {
+        displayComments: false,
+        type: null,
+        id: null,
+        commentListing:[]
+    },
+    methods: {
+        showCommentModal() {
+            this.displayComments = true;
+            this.getList(this.type,this.id);
         },
-        methods: {
-            showCommentModal() {
-                this.displayComments = true;
-            },
-            closeCommentModal() {
-                this.displayComments = false;
-            }
+        getList(type,id){
+            axios({
+                method: 'get',
+                url: '/api/' +type + '/' + id + '/comments',
+            }).then(response => {
+                this.commentListing = response.data.data
+            }).catch(error => {
+                console.log(error)
+            })
+        },
+        closeCommentModal() {
+            this.displayComments = false;
         }
-    });
+    }
+});
