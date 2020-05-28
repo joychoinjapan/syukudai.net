@@ -15,7 +15,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
+Vue.component('message-drop-down', require('./components/MessageDropDown').default);
 Vue.component('question-follow-button', require('./components/QuestionFollowButton').default);
 Vue.component('user-profile-pop', require('./components/UserProfilePop').default);
 Vue.component('user-vote-button', require('./components/UserVoteButton').default);
