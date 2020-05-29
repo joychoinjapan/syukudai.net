@@ -6,19 +6,38 @@
            </span>
         </div>
         <div class="dropdown-menu" id="dropdown-menu2" role="menu" v-if="isActive">
-            <div class="dropdown-content">
-                <div class="dropdown-item">
-                    message message messagemessagemessagemessagemessagemessagemessage
+            <div class="message-block media m-0">
+                <div class="media-left">
+                    <figure class="image is-48x48">
+                        <img class="is-rounded" src="https://bulma.io/images/placeholders/48x48.png">
+                    </figure>
                 </div>
-                <hr class="dropdown-divider">
-                <div class="dropdown-item">
-                    messagemessagemessage messagemessagemessagemessagemessagemessagemessage
+                <div class="media-content">
+                    <p class="title is-6 mb-1">jojoCho</p>
+                    <span class="mt-1">nicenicenicenicenicenice</span>
                 </div>
-                <hr class="dropdown-divider">
-                <div class="dropdown-item">
-                    messagemessagemessage messagemessagemessagemessagemessagemessagemessage
+            </div>
+            <div class="message-block media m-0">
+                <div class="media-left">
+                    <figure class="image is-48x48">
+                        <img class="is-rounded" src="https://bulma.io/images/placeholders/48x48.png">
+                    </figure>
                 </div>
-
+                <div class="media-content">
+                    <p class="title is-6 mb-1">jojoCho</p>
+                    <span class="mt-1">nicenicenicenicenicenice</span>
+                </div>
+            </div>
+            <div class="message-block media m-0">
+                <div class="media-left">
+                    <figure class="image is-48x48">
+                        <img class="is-rounded" src="https://bulma.io/images/placeholders/48x48.png">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <p class="title is-6 mb-1">jojoCho</p>
+                    <span class="mt-1">nicenicenicenicenicenice</span>
+                </div>
             </div>
         </div>
     </div>
@@ -49,16 +68,24 @@
 <style scoped>
     .dropdown-menu{
         position:fixed;
-        left: calc(100% - 32rem);
+        left: calc(100% - 30rem);
         top: 5rem;
-
+        max-height: 30rem;
+        overflow:hidden;
+        overflow-y:scroll;
     }
 
-    .dropdown-item{
-        width:28rem;
+    .message-block{
+        width:24rem;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap
+        white-space: nowrap;
+        padding:0.5rem;
     }
+
+    .navbar-item img {
+        max-height: 48px
+    }
+
 
 </style>

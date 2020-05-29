@@ -1888,6 +1888,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MessageDropDown",
   data: function data() {
@@ -6949,7 +6968,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.dropdown-menu[data-v-3da27486]{\n    position:fixed;\n    left: calc(100% - 32rem);\n    top: 5rem;\n}\n.dropdown-item[data-v-3da27486]{\n    width:28rem;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap\n}\n\n", ""]);
+exports.push([module.i, "\n.dropdown-menu[data-v-3da27486]{\n    position:fixed;\n    left: calc(100% - 30rem);\n    top: 5rem;\n    max-height: 30rem;\n    overflow:hidden;\n    overflow-y:scroll;\n}\n.message-block[data-v-3da27486]{\n    width:24rem;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    padding:0.5rem;\n}\n.navbar-item img[data-v-3da27486] {\n    max-height: 48px\n}\n\n\n", ""]);
 
 // exports
 
@@ -39116,7 +39135,7 @@ var render = function() {
             staticClass: "dropdown-menu",
             attrs: { id: "dropdown-menu2", role: "menu" }
           },
-          [_vm._m(0)]
+          [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)]
         )
       : _vm._e()
   ])
@@ -39126,27 +39145,68 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "dropdown-content" }, [
-      _c("div", { staticClass: "dropdown-item" }, [
-        _vm._v(
-          "\n                message message messagemessagemessagemessagemessagemessagemessage\n            "
-        )
+    return _c("div", { staticClass: "message-block media m-0" }, [
+      _c("div", { staticClass: "media-left" }, [
+        _c("figure", { staticClass: "image is-48x48" }, [
+          _c("img", {
+            staticClass: "is-rounded",
+            attrs: { src: "https://bulma.io/images/placeholders/48x48.png" }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("hr", { staticClass: "dropdown-divider" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "dropdown-item" }, [
-        _vm._v(
-          "\n                messagemessagemessage messagemessagemessagemessagemessagemessagemessage\n            "
-        )
+      _c("div", { staticClass: "media-content" }, [
+        _c("p", { staticClass: "title is-6 mb-1" }, [_vm._v("jojoCho")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "mt-1" }, [
+          _vm._v("nicenicenicenicenicenice")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "message-block media m-0" }, [
+      _c("div", { staticClass: "media-left" }, [
+        _c("figure", { staticClass: "image is-48x48" }, [
+          _c("img", {
+            staticClass: "is-rounded",
+            attrs: { src: "https://bulma.io/images/placeholders/48x48.png" }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("hr", { staticClass: "dropdown-divider" }),
+      _c("div", { staticClass: "media-content" }, [
+        _c("p", { staticClass: "title is-6 mb-1" }, [_vm._v("jojoCho")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "mt-1" }, [
+          _vm._v("nicenicenicenicenicenice")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "message-block media m-0" }, [
+      _c("div", { staticClass: "media-left" }, [
+        _c("figure", { staticClass: "image is-48x48" }, [
+          _c("img", {
+            staticClass: "is-rounded",
+            attrs: { src: "https://bulma.io/images/placeholders/48x48.png" }
+          })
+        ])
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "dropdown-item" }, [
-        _vm._v(
-          "\n                messagemessagemessage messagemessagemessagemessagemessagemessagemessage\n            "
-        )
+      _c("div", { staticClass: "media-content" }, [
+        _c("p", { staticClass: "title is-6 mb-1" }, [_vm._v("jojoCho")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "mt-1" }, [
+          _vm._v("nicenicenicenicenicenice")
+        ])
       ])
     ])
   }
