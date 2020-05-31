@@ -35,10 +35,25 @@ class MessageController extends Controller
         return response()->json(['isSent' => false]);
     }
 
+    /**
+     * 一対一のメッセージボックス
+     * @return MessageCollection
+     */
     public function index()
     {
         $user_id = request('user_id');
         $messages = $this->message->selectMessageByUser($user_id);
         return new MessageCollection($messages);
+    }
+
+    /**
+     * メッセージリスト
+     * to_user 受信者、即ちログインしている本人
+     * from_user 送信者
+     */
+    public function messageList()
+    {
+        $message=$this->message->selectMessageByEachUser();
+        return new MessageCollection($message);
     }
 }

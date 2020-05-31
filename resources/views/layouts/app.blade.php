@@ -63,7 +63,7 @@
                                     </a>
                                 @endif
                             @else
-                                <message-drop-down></message-drop-down>
+                                <message-drop-down login_user_id="{{Auth::user()->id}}"></message-drop-down>
                                 <div class="navbar-item has-dropdown is-hoverable">
                                     <a id="navbarDropdown" class="navbar-link dropdown-toggle" href="#" role="button"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

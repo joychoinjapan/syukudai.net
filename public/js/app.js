@@ -1888,30 +1888,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MessageDropDown",
+  props: ['login_user_id'],
   data: function data() {
     return {
-      isActive: false
+      isActive: false,
+      messageLists: []
     };
   },
   mounted: function mounted() {
@@ -1920,9 +1903,32 @@ __webpack_require__.r(__webpack_exports__);
     document.addEventListener('click', function (e) {
       if (!!_this.$refs.messageBox.contains(e.target)) return;
       _this.isActive = false;
+      this.messageLists = [];
     });
   },
-  methods: {}
+  methods: {
+    showDropDownMessageBox: function showDropDownMessageBox() {
+      if (this.messageLists.length == 0) {
+        this.getMessagesList();
+      } else {
+        this.messageLists = [];
+      }
+
+      this.isActive = !this.isActive;
+    },
+    getMessagesList: function getMessagesList() {
+      var _this2 = this;
+
+      axios({
+        method: 'post',
+        url: '/api/message/listbox'
+      }).then(function (response) {
+        _this2.messageLists = response.data.data;
+      })["catch"](function (error) {
+        console.log('error');
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -39113,11 +39119,7 @@ var render = function() {
         "span",
         {
           staticClass: "icon is-small",
-          on: {
-            click: function($event) {
-              _vm.isActive = !_vm.isActive
-            }
-          }
+          on: { click: _vm.showDropDownMessageBox }
         },
         [
           _c("i", {
@@ -39135,7 +39137,30 @@ var render = function() {
             staticClass: "dropdown-menu",
             attrs: { id: "dropdown-menu2", role: "menu" }
           },
-          [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)]
+          _vm._l(_vm.messageLists, function(messageList) {
+            return _c("div", { staticClass: "message-block media m-0" }, [
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "media-content" }, [
+                _c("p", { staticClass: "title is-6 mb-1" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(
+                        messageList.from_user_id == _vm.login_user_id
+                          ? messageList.to_user.name
+                          : messageList.from_user.name
+                      ) +
+                      "\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "mt-1" }, [
+                  _vm._v(_vm._s(messageList.body))
+                ])
+              ])
+            ])
+          }),
+          0
         )
       : _vm._e()
   ])
@@ -39145,68 +39170,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "message-block media m-0" }, [
-      _c("div", { staticClass: "media-left" }, [
-        _c("figure", { staticClass: "image is-48x48" }, [
-          _c("img", {
-            staticClass: "is-rounded",
-            attrs: { src: "https://bulma.io/images/placeholders/48x48.png" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "media-content" }, [
-        _c("p", { staticClass: "title is-6 mb-1" }, [_vm._v("jojoCho")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "mt-1" }, [
-          _vm._v("nicenicenicenicenicenice")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "message-block media m-0" }, [
-      _c("div", { staticClass: "media-left" }, [
-        _c("figure", { staticClass: "image is-48x48" }, [
-          _c("img", {
-            staticClass: "is-rounded",
-            attrs: { src: "https://bulma.io/images/placeholders/48x48.png" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "media-content" }, [
-        _c("p", { staticClass: "title is-6 mb-1" }, [_vm._v("jojoCho")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "mt-1" }, [
-          _vm._v("nicenicenicenicenicenice")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "message-block media m-0" }, [
-      _c("div", { staticClass: "media-left" }, [
-        _c("figure", { staticClass: "image is-48x48" }, [
-          _c("img", {
-            staticClass: "is-rounded",
-            attrs: { src: "https://bulma.io/images/placeholders/48x48.png" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "media-content" }, [
-        _c("p", { staticClass: "title is-6 mb-1" }, [_vm._v("jojoCho")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "mt-1" }, [
-          _vm._v("nicenicenicenicenicenice")
-        ])
+    return _c("div", { staticClass: "media-left" }, [
+      _c("figure", { staticClass: "image is-48x48" }, [
+        _c("img", {
+          staticClass: "is-rounded",
+          attrs: { src: "https://bulma.io/images/placeholders/48x48.png" }
+        })
       ])
     ])
   }
