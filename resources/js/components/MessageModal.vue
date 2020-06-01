@@ -37,7 +37,6 @@
             }
         },
         mounted() {
-            console.log('mounted!!!');
             axios({
                 method:'post',
                 url:'/api/message/list',
@@ -48,7 +47,6 @@
                this.listings=response.data.data
             }).catch(error => {
                 console.log('error');
-                console.log(error)
             })
         },
         computed: {

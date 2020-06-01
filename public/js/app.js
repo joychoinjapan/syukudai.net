@@ -1862,6 +1862,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MessageModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MessageModal */ "./resources/js/components/MessageModal.vue");
 //
 //
 //
@@ -1888,13 +1889,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MessageDropDown",
+  components: {
+    MessageModal: _MessageModal__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: ['login_user_id'],
   data: function data() {
     return {
       isActive: false,
-      messageLists: []
+      messageLists: [],
+      isEmpty: undefined,
+      showModal: false,
+      answerUserId: null,
+      name: null
     };
   },
   mounted: function mounted() {
@@ -1924,9 +1935,28 @@ __webpack_require__.r(__webpack_exports__);
         url: '/api/message/listbox'
       }).then(function (response) {
         _this2.messageLists = response.data.data;
+
+        if (_this2.messageLists.length > 0) {
+          _this2.isEmpty = false;
+        } else {
+          _this2.isEmpty = true;
+        }
       })["catch"](function (error) {
         console.log('error');
       });
+    },
+    partnerName: function partnerName(messageList) {
+      return messageList.from_user_id == this.login_user_id ? messageList.to_user.name : messageList.from_user.name;
+    },
+    showMessageModal: function showMessageModal(messageList) {
+      this.showModal = true;
+      this.name = this.partnerName(messageList);
+      this.answerUserId = messageList.from_user_id == this.login_user_id ? messageList.to_user.id : messageList.from_user.id;
+      this.isActive = false;
+      this.messageLists = [];
+    },
+    closeModal: function closeModal() {
+      this.showModal = false;
     }
   }
 });
@@ -1985,7 +2015,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log('mounted!!!');
     axios({
       method: 'post',
       url: '/api/message/list',
@@ -1996,7 +2025,6 @@ __webpack_require__.r(__webpack_exports__);
       _this.listings = response.data.data;
     })["catch"](function (error) {
       console.log('error');
-      console.log(error);
     });
   },
   computed: {
@@ -6974,7 +7002,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.dropdown-menu[data-v-3da27486]{\n    position:fixed;\n    left: calc(100% - 30rem);\n    top: 5rem;\n    max-height: 30rem;\n    overflow:hidden;\n    overflow-y:scroll;\n}\n.message-block[data-v-3da27486]{\n    width:24rem;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    padding:0.5rem;\n}\n.navbar-item img[data-v-3da27486] {\n    max-height: 48px\n}\n\n\n", ""]);
+exports.push([module.i, "\n.dropdown-menu[data-v-3da27486] {\n    position: fixed;\n    left: calc(100% - 25rem);\n    top: 4rem;\n    max-height: 30rem;\n    overflow: hidden;\n    overflow-y: scroll;\n    padding: 0;\n    width: 23rem;\n}\n.message-block[data-v-3da27486] {\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    padding: 0.5rem;\n}\n.navbar-item img[data-v-3da27486] {\n    max-height: 48px\n}\n.box-header[data-v-3da27486] {\n    background-color: #efefef;\n    font-size: 1.1rem;\n    text-align: center;\n    padding: 0.5rem;\n}\n\n\n", ""]);
 
 // exports
 
@@ -39113,57 +39141,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { ref: "messageBox", staticClass: "dropdown is-active" }, [
-    _c("div", { staticClass: "dropdown-trigger mr-2 mt-1" }, [
-      _c(
-        "span",
-        {
-          staticClass: "icon is-small",
-          on: { click: _vm.showDropDownMessageBox }
-        },
-        [
-          _c("i", {
-            staticClass: "fas fa-comment",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _vm.isActive
-      ? _c(
-          "div",
+  return _c(
+    "div",
+    { ref: "messageBox", staticClass: "dropdown is-active" },
+    [
+      _c("div", { staticClass: "dropdown-trigger mr-2 mt-1" }, [
+        _c(
+          "span",
           {
-            staticClass: "dropdown-menu",
-            attrs: { id: "dropdown-menu2", role: "menu" }
+            staticClass: "icon is-small",
+            on: { click: _vm.showDropDownMessageBox }
           },
-          _vm._l(_vm.messageLists, function(messageList) {
-            return _c("div", { staticClass: "message-block media m-0" }, [
-              _vm._m(0, true),
-              _vm._v(" "),
-              _c("div", { staticClass: "media-content" }, [
-                _c("p", { staticClass: "title is-6 mb-1" }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(
-                        messageList.from_user_id == _vm.login_user_id
-                          ? messageList.to_user.name
-                          : messageList.from_user.name
-                      ) +
-                      "\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "mt-1" }, [
-                  _vm._v(_vm._s(messageList.body))
-                ])
-              ])
-            ])
-          }),
-          0
+          [
+            _c("i", {
+              staticClass: "fas fa-comment",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]
         )
-      : _vm._e()
-  ])
+      ]),
+      _vm._v(" "),
+      _vm.isActive
+        ? _c(
+            "div",
+            {
+              staticClass: "dropdown-menu",
+              attrs: { id: "dropdown-menu2", role: "menu" }
+            },
+            [
+              _c("div", { staticClass: "box-header" }, [
+                _vm._v(
+                  _vm._s(_vm.isEmpty ? "メッセージはありません" : "メッセージ")
+                )
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.messageLists, function(messageList) {
+                return _c(
+                  "div",
+                  {
+                    staticClass: "message-block media m-0",
+                    on: {
+                      click: function($event) {
+                        return _vm.showMessageModal(messageList)
+                      }
+                    }
+                  },
+                  [
+                    _vm._m(0, true),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "media-content" }, [
+                      _c("p", { staticClass: "title is-6 mb-1" }, [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.partnerName(messageList)) +
+                            "\n                "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "mt-1" }, [
+                        _vm._v(_vm._s(messageList.body))
+                      ])
+                    ])
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showModal
+        ? _c("message-modal", {
+            attrs: { user_id: _vm.answerUserId, user_name: _vm.name },
+            on: { close: _vm.closeModal }
+          })
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
