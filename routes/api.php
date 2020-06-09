@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/topics', 'QuestionController@topic')->middleware('api');
+Route::get('/topics', 'QuestionController@topic')->middleware('auth:api');;
 
 //質問をフォローしているかを返す
 Route::post('/question/follower', 'QuestionFollowController@isFollowed')->middleware('api');

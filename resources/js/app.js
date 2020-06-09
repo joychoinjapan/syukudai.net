@@ -1,4 +1,5 @@
 import CKEditor from 'ckeditor4-vue';
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -23,8 +24,11 @@ Vue.component('message-modal', require('./components/MessageModal').default);
 Vue.component('answer-comments-button', require('./components/AnswerCommentsButton').default);
 Vue.component('comments', require('./components/Comments').default);
 Vue.component('question-comments-button', require('./components/QuestionCommentsButton').default),
-    Vue.use(CKEditor);
+Vue.use(CKEditor);
 Vue.component('editor', require('./components/Editor').default);
+Vue.component('selector',require('./components/Selector').default);
+
+
 
 
 const app = new Vue({
@@ -33,7 +37,7 @@ const app = new Vue({
         displayComments: false,
         type: null,
         id: null,
-        commentListing:[]
+        commentListing:[],
     },
     methods: {
         showCommentModal() {

@@ -17,6 +17,10 @@ mix.js('resources/js/app.js', 'public/js')
 mix.copy('node_modules/ckeditor4','public/js/ckeditor4');
 mix.copy('node_modules/ckeditor4-vue','public/js/ckeditor4-vue');
 
+mix.copy('node_modules/vue-multiselect','public/js/vue-multiselect');
+
+mix.copy('node_modules/vue-multiselect/dist/vue-multiselect.min.css','public/css/vue-multiselect/dist/vue-multiselect.min.css')
+
 mix.styles([
     'node_modules/bulma/css/bulma.min.css',
     'node_modules/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.css',
