@@ -52028,7 +52028,17 @@ var app = new Vue({
     displayComments: false,
     type: null,
     id: null,
-    commentListing: []
+    commentListing: [],
+    editorData: null,
+    questionTitle: null,
+    title_e: null,
+    topic_e: null,
+    content_e: null
+  },
+  computed: {
+    selectorData: function selectorData() {
+      return this.$refs.selectorData.value;
+    }
   },
   methods: {
     showCommentModal: function showCommentModal() {
@@ -52049,6 +52059,40 @@ var app = new Vue({
     },
     closeCommentModal: function closeCommentModal() {
       this.displayComments = false;
+    },
+    sendQuestion: function sendQuestion() {
+      var check_result = !!this.checkForm();
+
+      if (!check_result) {
+        axios({
+          method: 'post',
+          url: '/questions',
+          data: {
+            topics: this.selectorData,
+            title: this.questionTitle,
+            content: this.editorData
+          }
+        }).then(function (response) {
+          window.location.href = "/questions/" + response.data.question_id;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    checkForm: function checkForm() {
+      if (this.questionTitle.length < 6) {
+        this.title_e = true;
+      }
+
+      if (this.editorData.length < 26) {
+        this.content_e = true;
+      }
+
+      if (this.selectorData.length < 1) {
+        this.topic_e = true;
+      }
+
+      return this.title_e || this.content_e || this.topic_e;
     }
   }
 });

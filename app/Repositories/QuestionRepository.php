@@ -20,11 +20,18 @@ class QuestionRepository
     public function normalizeTopic(array $topics)
     {
         return collect($topics)->map(function ($topic) {
-            if (is_numeric($topic)) {
-                Topic::find($topic)->increment('questions_count');
-                return (int)$topic;
+            if (is_numeric($topic["id"])) {
+                Topic::find($topic["id"])->increment('questions_count');
+                return (int)$topic["id"];
             }
-            $newTopic = Topic::create(['name' => $topic, 'questions_count' => 1]);
+
+            $is_exist_id=Topic::where('name',$topic['name'])->value('id');
+            if($is_exist_id){
+                Topic::find($is_exist_id)->increment('questions_count');
+                return $is_exist_id;
+            }
+
+            $newTopic = Topic::create(['name' => $topic["name"], 'questions_count' => 1]);
             return $newTopic->id;
         })->toArray();
     }

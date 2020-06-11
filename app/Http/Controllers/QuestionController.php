@@ -7,6 +7,7 @@ use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
 use App\Topic;
 use Cassandra\Exception\TruncateException;
+use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\QuestionRepository;
@@ -52,15 +53,27 @@ class QuestionController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
+        try{
         $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
         $data = [
             'title' => $request->get('title'),
             'content' => $request->get('content'),
             'user_id' => Auth::id()
         ];
-        $question = $this->questionRepository->create($data);
-        $question->topics()->attach($topics);
-        return redirect()->route('questions.show', [$question->id]);
+            $question = $this->questionRepository->create($data);
+            $question->topics()->attach($topics);
+        }catch (QueryException $exception){
+            return response()->json(array(
+                'status'=>2,
+                'msg' => 'Fail'
+            ));
+        }
+        return response()->json(array(
+                'status'=>1,
+                'msg' => 'Success',
+                'question_id' =>$question->id
+        ));
+
     }
 
     /**
