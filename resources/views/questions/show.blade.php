@@ -68,6 +68,7 @@
             <div class="col-md-8">
                 <div class="card my-2">
                     @if(Auth::check())
+                        <input v-model="question_id" hidden value="{{$question->id}}">
                         <div class="card-content answer-block">
                             <div class="media">
                                 <div class="media-left">
@@ -81,20 +82,18 @@
                                     <p class="subtitle is-6">@johnsmith</p>
                                 </div>
                             </div>
-                            <form action="/question/{{$question->id}}/answer" method="post">
-                                {{csrf_field()}}
                                 <div class="control edit-answer-area mb-3" id="ckeditor">
-                                    <ckeditor></ckeditor>
+                                    <ckeditor v-model="editorData"></ckeditor>
                                 </div>
+                                <p class="help is-danger" v-if="content_e">内容は26文字以上にしてください</p>
                                 <div class="field is-grouped">
                                     <div class="control">
-                                        <button class="button is-link is-small">投稿</button>
+                                        <button class="button is-link is-small" @click="sendAnswer({{$question->id}})">投稿</button>
                                     </div>
                                     <div class="control">
                                         <button class="button is-link is-light is-small">キャンセル</button>
                                     </div>
                                 </div>
-                            </form>
                         </div>
                     @else
                         <a href="{{url('login')}}" class="button is-success is-light ">ログインして回答する</a>

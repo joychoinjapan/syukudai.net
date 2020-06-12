@@ -52033,7 +52033,8 @@ var app = new Vue({
     questionTitle: null,
     title_e: null,
     topic_e: null,
-    content_e: null
+    content_e: null,
+    question_id: null
   },
   computed: {
     selectorData: function selectorData() {
@@ -52093,6 +52094,24 @@ var app = new Vue({
       }
 
       return this.title_e || this.content_e || this.topic_e;
+    },
+    sendAnswer: function sendAnswer(question_id) {
+      if (this.editorData < 26) {
+        this.content_e = true;
+        return;
+      }
+
+      axios({
+        method: 'post',
+        url: '/question/' + question_id + "/answer",
+        data: {
+          content: this.editorData
+        }
+      }).then(function (response) {
+        window.location.href = "/questions/" + question_id;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
