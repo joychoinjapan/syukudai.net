@@ -27,12 +27,18 @@ class QuestionController extends Controller
     /**
      * Display a listing of the questions.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response;
      */
     public function index()
     {
-        $questions = $this->questionRepository->getQuestionsFeed();
-        return view('questions.index', compact('questions'));
+        if(Auth::check()){
+            $questions = $this->questionRepository->getQuestionsFeed();
+            return view('questions.index', compact('questions'));
+        }
+
+        //todo
+        return "カスタマー専用ページ";
+
     }
 
     /**
