@@ -27,6 +27,7 @@ Vue.component('question-comments-button', require('./components/QuestionComments
 Vue.use(CKEditor);
 Vue.component('editor', require('./components/Editor').default);
 Vue.component('selector',require('./components/Selector').default);
+Vue.component('user-avatar',require('./components/Avatar').default);
 
 
 

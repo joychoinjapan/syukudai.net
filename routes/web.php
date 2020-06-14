@@ -29,3 +29,5 @@ Route::post('question/{question}/answer','AnswersController@store');
 //Route::get('question/{question}/unfollow','QuestionFollowController@unfollow')->middleware('auth')->name('question.unfollow');
 
 Route::get('notifications','NotificationsController@index');
+
+Route::get('avatar','UsersController@avatar')->name('profile');

@@ -32,10 +32,10 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="navbar-dropdown">
-                                    <a class="navbar-item">
+                                    <a class="navbar-item" href="{{url('/questions')}}">
                                         ホーム
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="navbar-item" href="{{route('profile')}}">
                                         設定
                                     </a>
                                     <a class="navbar-item">
