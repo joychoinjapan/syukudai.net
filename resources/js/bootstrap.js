@@ -43,7 +43,7 @@ if (token) {
  */
 let api_token= document.head.querySelector('meta[name="api-token"]');
 
-if (token) {
+if (api_token) {
     window.axios.defaults.headers.common['Authorization'] = api_token.content;
 } else {
     console.error('Authorization token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');

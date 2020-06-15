@@ -30,4 +30,6 @@ Route::post('question/{question}/answer','AnswersController@store');
 
 Route::get('notifications','NotificationsController@index');
 
-Route::get('avatar','UsersController@avatar')->name('profile');
+Route::get('/profile','UsersController@profile')->name('profile');
+Route::post('avatar','UsersController@changeAvatar');
+

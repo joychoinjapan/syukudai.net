@@ -21,6 +21,18 @@
     <link rel="stylesheet" href="{{asset('css/all.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
           integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>;
+        Laravel.apiToken = "{{ Auth::check() ? 'Bearer '.Auth::user()->api_token : 'Bearer ' }}";
+        @if(Auth::check())
+            window.Zhihu = {
+            name:"{{Auth::user()->name}}",
+            avatar:"{{Auth::user()->avatar}}"
+        }
+        @endif
+    </script>
 </head>
 <body>
 <div id="app">
