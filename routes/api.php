@@ -59,5 +59,5 @@ Route::get('/question/{id}/comments', 'CommentController@questions');
 Route::post('comment', 'CommentController@store')->middleware('api');
 
 //ユーザー名の重複チェック
-Route::post('check','UsersControlle@check')->middleware('api');
+Route::post('check','UsersController@check');
 

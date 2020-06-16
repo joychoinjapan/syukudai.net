@@ -32,4 +32,5 @@ Route::get('notifications','NotificationsController@index');
 
 Route::get('/profile','UsersController@profile')->name('profile');
 Route::post('avatar','UsersController@changeAvatar');
+Route::post('/profile/update','UsersController@profileUpdate')->name('profileUpdate');
 

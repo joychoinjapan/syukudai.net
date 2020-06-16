@@ -1,4 +1,6 @@
 <template>
+    <div class="card">
+    <div class="card-header label is-medium">プロフィール</div>
     <div class="card-body">
         <div class="field">
             <user-avatar></user-avatar>
@@ -22,35 +24,38 @@
                 <div class="control">
                     <textarea class="textarea" placeholder="Textarea" v-model="self_introduction"></textarea>
                 </div>
-                <p class="help">This is a help text</p>
             </div>
             <div class="field">
                 <label class="label">所属している組織・企業</label>
                 <div class="control">
                     <input class="input" type="text" placeholder="Text input">
                 </div>
-                <p class="help">This is a help text</p>
             </div>
             <div class="field">
                 <label class="label">居住地</label>
                 <div class="control">
                     <input class="input" type="text" placeholder="Text input">
                 </div>
-                <p class="help">This is a help text</p>
             </div>
         </div>
+    </div>
+    <div class="card-footer">
+        <button class="button is-success mr-2" @click="update" :disabled="!canSendForm">情報更新</button>
+        <button class="button">キャンセル</button>
+    </div>
     </div>
 </template>
 
 <script>
     import Avatar from "./Avatar";
+
     const success = "is-success";
-    const danger = "is-danger" ;
+    const danger = "is-danger";
 
     export default {
         name: "ProfileForm",
         components: {Avatar},
-        props:['user_id'],
+        props: ['user_id'],
         data() {
             return {
                 username: null,
@@ -59,38 +64,71 @@
                 address: null,
                 UserNameMessage: null,
                 colors: null,
-                userNameFromStyle:null,
+                userNameFromStyle: null,
+                canSendForm:false
             }
         },
         methods: {
             checkName() {
-                let checkResult;
-                checkResult=this.checkNameCount();
-                if(checkResult){
-                    this.checkNameDup();
+                let checkResult = false;
+                checkResult = this.checkNameCount();
+                if (checkResult) {
+                checkResult = this.checkNameDup();
                 }
+                return checkResult;
             },
             checkNameCount() {
+                let result = true;
                 if (this.username.length > 16 || this.username.length < 4) {
                     this.UserNameMessage = "ユーザー名は4文字以上、16文字以下を入力してください";
                     this.colors = danger;
                     this.userNameFromStyle = danger;
-                    let result=false;
+                    let result = false;
                     return result;
-                }else{
+                } else {
                     this.UserNameMessage = "ユーザー名は使用可能です";
                     this.colors = success;
                     this.userNameFromStyle = success;
-                    let result=true;
                     return result;
                 }
-
             },
             checkNameDup() {
+                axios({
+                    method: 'post',
+                    url: '/api/check',
+                    data: {
+                        user_id: this.user_id,
+                        name: this.username
+                    }
+                }).then(response => {
+                    if (response.data.result) {
+                        this.canSendForm=false;
+                        this.UserNameMessage = "ユーザー名はすでに使われています";
+                        this.colors = danger;
+                        this.userNameFromStyle = danger;
+                    }else{
+                        this.canSendForm=true;
+                    }
+                }).catch(error => {
+                    console.log(error.response);
+                })
 
+                return this.canSendForm;
+            },
+            update(){
+                axios({
+                    method:'post',
+                    url:'/profile/update',
+                    data: {
+                        user_id: this.user_id,
+                        name: this.username,
+                        self_introduction:this.self_introduction,
+                        company:this.company,
+                        address:this.address
+                    }
+                })
             }
         }
-
     }
 </script>
 

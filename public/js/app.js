@@ -2193,6 +2193,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 var success = "is-success";
 var danger = "is-danger";
@@ -2210,34 +2214,74 @@ var danger = "is-danger";
       address: null,
       UserNameMessage: null,
       colors: null,
-      userNameFromStyle: null
+      userNameFromStyle: null,
+      canSendForm: false
     };
   },
   methods: {
     checkName: function checkName() {
-      var checkResult;
+      var checkResult = false;
       checkResult = this.checkNameCount();
 
       if (checkResult) {
-        this.checkNameDup();
+        checkResult = this.checkNameDup();
       }
+
+      return checkResult;
     },
     checkNameCount: function checkNameCount() {
+      var result = true;
+
       if (this.username.length > 16 || this.username.length < 4) {
         this.UserNameMessage = "ユーザー名は4文字以上、16文字以下を入力してください";
         this.colors = danger;
         this.userNameFromStyle = danger;
-        var result = false;
-        return result;
+        var _result = false;
+        return _result;
       } else {
         this.UserNameMessage = "ユーザー名は使用可能です";
         this.colors = success;
         this.userNameFromStyle = success;
-        var _result = true;
-        return _result;
+        return result;
       }
     },
-    checkNameDup: function checkNameDup() {}
+    checkNameDup: function checkNameDup() {
+      var _this = this;
+
+      axios({
+        method: 'post',
+        url: '/api/check',
+        data: {
+          user_id: this.user_id,
+          name: this.username
+        }
+      }).then(function (response) {
+        if (response.data.result) {
+          _this.canSendForm = false;
+          _this.UserNameMessage = "ユーザー名はすでに使われています";
+          _this.colors = danger;
+          _this.userNameFromStyle = danger;
+        } else {
+          _this.canSendForm = true;
+        }
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+      return this.canSendForm;
+    },
+    update: function update() {
+      axios({
+        method: 'post',
+        url: '/profile/update',
+        data: {
+          user_id: this.user_id,
+          name: this.username,
+          self_introduction: this.self_introduction,
+          company: this.company,
+          address: this.address
+        }
+      });
+    }
   }
 });
 
@@ -52718,87 +52762,105 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card-body" }, [
-    _c(
-      "div",
-      { staticClass: "field" },
-      [
-        _c("user-avatar"),
-        _vm._v(" "),
-        _c("label", { staticClass: "label" }, [_vm._v("ユーザー名")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "control has-icons-left has-icons-right" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.username,
-                expression: "username"
-              }
-            ],
-            staticClass: "input",
-            class: _vm.userNameFromStyle,
-            attrs: { type: "text", placeholder: "Text input" },
-            domProps: { value: _vm.username },
-            on: {
-              change: _vm.checkName,
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.username = $event.target.value
-              }
-            }
-          }),
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-header label is-medium" }, [
+      _vm._v("プロフィール")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c(
+        "div",
+        { staticClass: "field" },
+        [
+          _c("user-avatar"),
           _vm._v(" "),
-          _vm._m(0),
+          _c("label", { staticClass: "label" }, [_vm._v("ユーザー名")]),
           _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c("p", {
-            staticClass: "help",
-            class: _vm.colors,
-            domProps: { textContent: _vm._s(_vm.UserNameMessage) }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "field" }, [
-          _c("label", { staticClass: "label" }, [_vm._v("自己紹介")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("textarea", {
+          _c("div", { staticClass: "control has-icons-left has-icons-right" }, [
+            _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.self_introduction,
-                  expression: "self_introduction"
+                  value: _vm.username,
+                  expression: "username"
                 }
               ],
-              staticClass: "textarea",
-              attrs: { placeholder: "Textarea" },
-              domProps: { value: _vm.self_introduction },
+              staticClass: "input",
+              class: _vm.userNameFromStyle,
+              attrs: { type: "text", placeholder: "Text input" },
+              domProps: { value: _vm.username },
               on: {
+                change: _vm.checkName,
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.self_introduction = $event.target.value
+                  _vm.username = $event.target.value
                 }
               }
+            }),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "help",
+              class: _vm.colors,
+              domProps: { textContent: _vm._s(_vm.UserNameMessage) }
             })
           ]),
           _vm._v(" "),
-          _c("p", { staticClass: "help" }, [_vm._v("This is a help text")])
-        ]),
-        _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _vm._m(3)
-      ],
-      1
-    )
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label" }, [_vm._v("自己紹介")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.self_introduction,
+                    expression: "self_introduction"
+                  }
+                ],
+                staticClass: "textarea",
+                attrs: { placeholder: "Textarea" },
+                domProps: { value: _vm.self_introduction },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.self_introduction = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3)
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "button is-success mr-2",
+          attrs: { disabled: !_vm.canSendForm },
+          on: { click: _vm.update }
+        },
+        [_vm._v("情報更新")]
+      ),
+      _vm._v(" "),
+      _c("button", { staticClass: "button" }, [_vm._v("キャンセル")])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -52830,9 +52892,7 @@ var staticRenderFns = [
           staticClass: "input",
           attrs: { type: "text", placeholder: "Text input" }
         })
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "help" }, [_vm._v("This is a help text")])
+      ])
     ])
   },
   function() {
@@ -52847,9 +52907,7 @@ var staticRenderFns = [
           staticClass: "input",
           attrs: { type: "text", placeholder: "Text input" }
         })
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "help" }, [_vm._v("This is a help text")])
+      ])
     ])
   }
 ]
