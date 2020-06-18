@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckUserRequest;
+use App\Repositories\UserRepository;
 use App\User;
+use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    protected $userRespository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->middleware('auth');
+        $this->userRespository = $userRepository;
+
+    }
+
     public function profile()
     {
         return view('users.profile');
@@ -33,9 +45,33 @@ class UsersController extends Controller
     {
         $user_id = $request->get('user_id');
         $name = $request->get('name');
-        $count = User::where('id','<>',$user_id)->where('name',$name)->count();
+        $count = User::where('id', '<>', $user_id)->where('name', $name)->count();
         return response()->json([
-            "result"=>!!$count
+            "result" => !!$count
         ]);
+    }
+
+    public function profileUpdate(CheckUserRequest $request)
+    {
+        try {
+            $user = $this->userRespository->byId($request->get('user_id'));
+            $user->update([
+                'name' => $request->get('name'),
+                'self_introduction' => $request->get('self_introduction'),
+                'company' => $request->get('company'),
+                'address' => $request->get('address'),
+            ]);
+        } catch (QueryException $exception) {
+            return response()->json(array(
+                'status' => 2,
+                'msg' => 'Fail'
+            ));
+        }
+
+        return response()->json(array(
+            'status' => 1,
+            'msg' => 'Success'
+        ));
+
     }
 }

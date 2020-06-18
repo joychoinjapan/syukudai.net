@@ -266,7 +266,8 @@ return [
         'password'=>'パスワード',
         'password-confirm'=>'パスワード(確認)',
         'title'=>'タイトル',
-        'content'=>'内容'
+        'content'=>'内容',
+        'name'=>'ユーザー名'
     ],
 
 ];

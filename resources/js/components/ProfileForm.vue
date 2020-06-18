@@ -3,14 +3,14 @@
     <div class="card-header label is-medium">プロフィール</div>
     <div class="card-body">
         <div class="field">
-            <user-avatar></user-avatar>
+            <message-dialog v-if="isUpdated" :isSuccess="isUpdated"></message-dialog>
+            <user-avatar :avatar="avatar"></user-avatar>
             <label class="label">ユーザー名</label>
             <div class="control has-icons-left has-icons-right">
                 <input class="input" type="text" :class="userNameFromStyle"
                        placeholder="Text input"
                        v-model="username"
-                       @change="checkName"
-                >
+                       @change="checkName">
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                 </span>
@@ -48,14 +48,15 @@
 
 <script>
     import Avatar from "./Avatar";
+    import MessageDialog from "./MessageDialog";
 
     const success = "is-success";
     const danger = "is-danger";
 
     export default {
         name: "ProfileForm",
-        components: {Avatar},
-        props: ['user_id'],
+        components: {Avatar,MessageDialog},
+        props: ['user_id','avatar'],
         data() {
             return {
                 username: null,
@@ -65,7 +66,8 @@
                 UserNameMessage: null,
                 colors: null,
                 userNameFromStyle: null,
-                canSendForm:false
+                canSendForm:false,
+                isUpdated:null,
             }
         },
         methods: {
@@ -126,7 +128,15 @@
                         company:this.company,
                         address:this.address
                     }
-                })
+                }).then
+                (response=>{
+                    window.location.href="/profile"
+                    this.isUpdated = response.data.status;
+                }).catch(error=>{
+                    this.UserNameMessage = error.response.data.errors.name;
+                    this.colors = danger;
+                    this.userNameFromStyle = danger;
+                });
             }
         }
     }
