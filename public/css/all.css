@@ -298,3 +298,7 @@ a:focus {
 .home-tab{
     display: flex;
 }
+
+.navbar-item img {
+    max-height: 48px
+}
