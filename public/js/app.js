@@ -2231,6 +2231,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 var success = "is-success";
@@ -2241,13 +2244,18 @@ var danger = "is-danger";
     Avatar: _Avatar__WEBPACK_IMPORTED_MODULE_0__["default"],
     MessageDialog: _MessageDialog__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['user_id', 'avatar'],
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  },
   data: function data() {
     return {
-      username: null,
-      self_introduction: null,
-      company: null,
-      address: null,
+      username: this.user.name,
+      self_introduction: this.user.self_introduction,
+      company: this.user.company,
+      address: this.user.address,
       UserNameMessage: null,
       colors: null,
       userNameFromStyle: null,
@@ -2289,7 +2297,7 @@ var danger = "is-danger";
         method: 'post',
         url: '/api/check',
         data: {
-          user_id: this.user_id,
+          user_id: this.user.id,
           name: this.username
         }
       }).then(function (response) {
@@ -2313,7 +2321,7 @@ var danger = "is-danger";
         method: 'post',
         url: '/profile/update',
         data: {
-          user_id: this.user_id,
+          user_id: this.user.id,
           name: this.username,
           self_introduction: this.self_introduction,
           company: this.company,
@@ -52912,7 +52920,7 @@ var render = function() {
             ? _c("message-dialog", { attrs: { isSuccess: _vm.isUpdated } })
             : _vm._e(),
           _vm._v(" "),
-          _c("user-avatar", { attrs: { avatar: _vm.avatar } }),
+          _c("user-avatar", { attrs: { avatar: _vm.user.avatar } }),
           _vm._v(" "),
           _c("label", { staticClass: "label" }, [_vm._v("ユーザー名")]),
           _vm._v(" "),
@@ -52928,7 +52936,10 @@ var render = function() {
               ],
               staticClass: "input",
               class: _vm.userNameFromStyle,
-              attrs: { type: "text", placeholder: "Text input" },
+              attrs: {
+                type: "text",
+                placeholder: "ユーザー名を入力してください"
+              },
               domProps: { value: _vm.username },
               on: {
                 change: _vm.checkName,
@@ -52966,9 +52977,10 @@ var render = function() {
                   }
                 ],
                 staticClass: "textarea",
-                attrs: { placeholder: "Textarea" },
+                attrs: { placeholder: "自己紹介を入力してください" },
                 domProps: { value: _vm.self_introduction },
                 on: {
+                  change: _vm.checkName,
                   input: function($event) {
                     if ($event.target.composing) {
                       return
@@ -52980,9 +52992,71 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(2),
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label" }, [
+              _vm._v("所属している組織・企業")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.company,
+                    expression: "company"
+                  }
+                ],
+                staticClass: "input",
+                attrs: {
+                  type: "text",
+                  placeholder: "所属している組織・企業を入力してください"
+                },
+                domProps: { value: _vm.company },
+                on: {
+                  change: _vm.checkName,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.company = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
           _vm._v(" "),
-          _vm._m(3)
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label" }, [_vm._v("居住地")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.address,
+                    expression: "address"
+                  }
+                ],
+                staticClass: "input",
+                attrs: {
+                  type: "text",
+                  placeholder: "居住地を入力してください"
+                },
+                domProps: { value: _vm.address },
+                on: {
+                  change: _vm.checkName,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.address = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
         ],
         1
       )
@@ -53018,36 +53092,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "icon is-small is-right" }, [
       _c("i", { staticClass: "fas fa-check" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("所属している組織・企業")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "control" }, [
-        _c("input", {
-          staticClass: "input",
-          attrs: { type: "text", placeholder: "Text input" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("居住地")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "control" }, [
-        _c("input", {
-          staticClass: "input",
-          attrs: { type: "text", placeholder: "Text input" }
-        })
-      ])
     ])
   }
 ]

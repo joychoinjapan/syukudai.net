@@ -4,11 +4,11 @@
     <div class="card-body">
         <div class="field">
             <message-dialog v-if="isUpdated" :isSuccess="isUpdated"></message-dialog>
-            <user-avatar :avatar="avatar"></user-avatar>
+            <user-avatar :avatar="user.avatar"></user-avatar>
             <label class="label">ユーザー名</label>
             <div class="control has-icons-left has-icons-right">
                 <input class="input" type="text" :class="userNameFromStyle"
-                       placeholder="Text input"
+                       placeholder="ユーザー名を入力してください"
                        v-model="username"
                        @change="checkName">
                 <span class="icon is-small is-left">
@@ -22,19 +22,22 @@
             <div class="field">
                 <label class="label">自己紹介</label>
                 <div class="control">
-                    <textarea class="textarea" placeholder="Textarea" v-model="self_introduction"></textarea>
+                    <textarea class="textarea" placeholder="自己紹介を入力してください"
+                              v-model="self_introduction" @change="checkName"></textarea>
                 </div>
             </div>
             <div class="field">
                 <label class="label">所属している組織・企業</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Text input">
+                    <input class="input" type="text" placeholder="所属している組織・企業を入力してください"
+                           v-model="company" @change="checkName">
                 </div>
             </div>
             <div class="field">
                 <label class="label">居住地</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Text input">
+                    <input class="input" type="text" placeholder="居住地を入力してください"
+                           v-model="address" @change="checkName">
                 </div>
             </div>
         </div>
@@ -56,13 +59,18 @@
     export default {
         name: "ProfileForm",
         components: {Avatar,MessageDialog},
-        props: ['user_id','avatar'],
+        props: {
+            user:{
+                type:Object,
+                required:true
+            }
+        },
         data() {
             return {
-                username: null,
-                self_introduction: null,
-                company: null,
-                address: null,
+                username: this.user.name,
+                self_introduction: this.user.self_introduction,
+                company: this.user.company,
+                address: this.user.address,
                 UserNameMessage: null,
                 colors: null,
                 userNameFromStyle: null,
@@ -99,7 +107,7 @@
                     method: 'post',
                     url: '/api/check',
                     data: {
-                        user_id: this.user_id,
+                        user_id: this.user.id,
                         name: this.username
                     }
                 }).then(response => {
@@ -122,7 +130,7 @@
                     method:'post',
                     url:'/profile/update',
                     data: {
-                        user_id: this.user_id,
+                        user_id: this.user.id,
                         name: this.username,
                         self_introduction:this.self_introduction,
                         company:this.company,

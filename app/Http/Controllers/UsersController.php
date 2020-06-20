@@ -16,7 +16,6 @@ class UsersController extends Controller
     {
         $this->middleware('auth');
         $this->userRespository = $userRepository;
-
     }
 
     public function profile()
@@ -59,7 +58,7 @@ class UsersController extends Controller
                 'name' => $request->get('name'),
                 'self_introduction' => $request->get('self_introduction'),
                 'company' => $request->get('company'),
-                'address' => $request->get('address'),
+                'address' => $request->get('address')
             ]);
         } catch (QueryException $exception) {
             return response()->json(array(

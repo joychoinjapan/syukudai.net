@@ -4,7 +4,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-               <profile-form :user_id="{{Auth::user()->id}}" avatar="{{Auth::user()->avatar}}"></profile-form>
+               <profile-form v-bind:user="{{Auth::user()}}">
+               </profile-form>
             </div>
         </div>
     </div>
