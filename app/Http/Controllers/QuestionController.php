@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Follow;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
+use App\Repositories\UserRepository;
 use App\Topic;
 use Cassandra\Exception\TruncateException;
 use Doctrine\DBAL\Query\QueryException;
@@ -16,11 +17,14 @@ use App\Repositories\QuestionRepository;
 class QuestionController extends Controller
 {
     protected $questionRepository;
+    protected $userRepository;
 
-    public function __construct(QuestionRepository $questionRepository)
+    public function __construct(QuestionRepository $questionRepository,
+                                UserRepository $userRepository)
     {
         $this->middleware('auth')->except(['index', 'show']);
         $this->questionRepository = $questionRepository;
+        $this->userRepository = $userRepository;
     }
 
 
@@ -32,8 +36,18 @@ class QuestionController extends Controller
     public function index()
     {
         if(Auth::check()){
-            $questions = $this->questionRepository->getQuestionsFeed();
-            return view('questions.index', compact('questions'));
+            //おすすめの質問
+            $rec_questions = $this->questionRepository->getQuestionsFeed();
+            foreach ($rec_questions as $question){
+                $question->content=strip_tags($question->content);
+                $question->save();
+            }
+
+            //フォロー中の質問
+            $user=$this->userRepository->withFollowedQuestions(Auth::id());
+            $following_questions=$user->follow;
+
+            return view('questions.index_edit', compact('rec_questions','following_questions'));
         }
 
         //todo
