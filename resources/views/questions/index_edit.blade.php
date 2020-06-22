@@ -27,18 +27,53 @@
                                 <i class="far fa-folder fa-2x m-1"></i>
                                 <p>ストック</p>
                             </div>
-                    </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card mb-2">
                     <div class="card-header-title">
                        データ分析
                     </div>
-                    <div class="card-content">
-                        <p>プログラミングって独学でやると難しいでしゃうか</p>
-                        <p>プログラミングって独学でやると難しいでしゃうか</p>
-                        <p>プログラミングって独学でやると難しいでしゃうか</p>
-                        <p>プログラミングって独学でやると難しいでしゃうか</p>
+                    <div class="card-content p-3">
+                        <div class="columns has-text-centered is-centered">
+                            <div class="column">
+                                <h2>いいね</h2>
+                                <h2 class="is-2 font-weight-bold">23</h2>
+                                <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
+                            </div>
+                            <div class="column">
+                                <h2>閲覧</h2>
+                                <h2 class="is-2 font-weight-bold">23</h2>
+                                <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
+                            </div>
+                            <div class="column">
+                                <h2>ストック</h2>
+                                <h2 class="is-2 font-weight-bold">23</h2>
+                                <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
+                            </div>
+                            <div class="column">
+                                <h2>採用</h2>
+                                <h2 class="is-2 font-weight-bold">23</h2>
+                                <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
+                            </div>
+                        </div>
+                        <div class="columns has-text-centered is-centered">
+                            <div class="column">
+                                <h2>フォロー</h2>
+                                <h2 class="is-2 font-weight-bold">23</h2>
+                                <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
+                            </div>
+                            <div class="column">
+                                <h2>フォロワー</h2>
+                                <h2 class="is-2 font-weight-bold">23</h2>
+                                <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
+                            </div>
+                            <div class="column">
+                                <h2>Aポイント</h2>
+                                <h2 class="is-2 font-weight-bold">200PT</h2>
+                                <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card mb-2">
