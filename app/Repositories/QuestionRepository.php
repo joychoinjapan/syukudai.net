@@ -46,6 +46,11 @@ class QuestionRepository
         return Question::published()->latest('updated_at')->with('user')->get();
     }
 
+    public function getPopularQuestions()
+    {
+        return Question::published()->orderBy('answers_count', 'desc')->with('user')->get();
+    }
+
 
     public function withComment($id)
     {

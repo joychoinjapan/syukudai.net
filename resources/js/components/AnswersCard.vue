@@ -20,14 +20,16 @@
         components:{QuestionsList},
         props:{
             rec_questions:Array,
-            following_questions:Array
+            following_questions:Array,
+            popular_questions:Array
         },
         data(){
             return {
                 selectedQuestions: this.rec_questions,
                 tabs: [
                     {id:1,name: "rec_questions", des: "おすすめ"},
-                    {id:2,name: "following_questions", des: "フォロー"}
+                    {id:2,name: "following_questions", des: "フォロー"},
+                    {id:3,name: "popular_questions", des: "人気の質問"}
                 ],
                 selectedTabId:1,
             }

@@ -38,16 +38,17 @@ class QuestionController extends Controller
         if(Auth::check()){
             //おすすめの質問
             $rec_questions = $this->questionRepository->getQuestionsFeed();
-            foreach ($rec_questions as $question){
-                $question->content=strip_tags($question->content);
-                $question->save();
-            }
 
             //フォロー中の質問
             $user=$this->userRepository->withFollowedQuestions(Auth::id());
             $following_questions=$user->follow;
 
-            return view('questions.index_edit', compact('rec_questions','following_questions'));
+            //人気の質問
+            $popular_questions=$this->questionRepository->getPopularQuestions();
+            return view('questions.index_edit',
+                compact('rec_questions',
+                    'following_questions',
+                        'popular_questions'));
         }
 
         //todo

@@ -1747,7 +1747,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     rec_questions: Array,
-    following_questions: Array
+    following_questions: Array,
+    popular_questions: Array
   },
   data: function data() {
     return {
@@ -1760,6 +1761,10 @@ __webpack_require__.r(__webpack_exports__);
         id: 2,
         name: "following_questions",
         des: "フォロー"
+      }, {
+        id: 3,
+        name: "popular_questions",
+        des: "人気の質問"
       }],
       selectedTabId: 1
     };
@@ -2608,6 +2613,11 @@ __webpack_require__.r(__webpack_exports__);
   name: "QuestionsList",
   props: {
     questions: Array
+  },
+  methods: {
+    delHtmlTag: function delHtmlTag(str) {
+      return str.replace(/<[^>]+>/g, "");
+    }
   }
 });
 
@@ -53437,7 +53447,7 @@ var render = function() {
                   _c("span", { staticClass: "limit-line" }, [
                     _vm._v(
                       "\n                            " +
-                        _vm._s(question.content) +
+                        _vm._s(_vm.delHtmlTag(question.content)) +
                         "\n                        "
                     )
                   ])

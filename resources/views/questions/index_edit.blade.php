@@ -6,7 +6,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <answers-card :rec_questions="{{$rec_questions}}"
                               :following_questions="{{$following_questions}}"
-                ></answers-card>
+                              :popular_questions="{{$popular_questions}}"/>
             </div>
             <div class="col-md-4 col-md-offset-2">
                 <div class="card mb-2">

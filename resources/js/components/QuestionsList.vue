@@ -15,7 +15,7 @@
                             <strong>{{question.title}}</strong>
                             <br>
                             <span class="limit-line">
-                                {{question.content}}
+                                {{delHtmlTag(question.content)}}
                             </span>
                         </a>
                         <br>
@@ -91,6 +91,11 @@
         name: "QuestionsList",
         props:{
             questions:Array
+        },
+        methods:{
+            delHtmlTag(str){
+                return str.replace(/<[^>]+>/g, "");
+            }
         }
     }
 </script>
