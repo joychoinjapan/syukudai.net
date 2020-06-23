@@ -306,3 +306,7 @@ a:focus {
 .data-clip{
     font-size: 0.5rem;
 }
+
+a.operation:hover {
+    color: #3273dc;
+}

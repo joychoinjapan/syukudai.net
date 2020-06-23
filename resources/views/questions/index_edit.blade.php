@@ -16,16 +16,22 @@
                     <div class="card-content p-3">
                         <div class="columns has-text-centered is-centered">
                             <div class="column">
-                                <i class="fas fa-chalkboard-teacher fa-2x m-1"></i>
-                                <p>答える</p>
+                                <a class="operation" href="#">
+                                    <i class="fas fa-chalkboard-teacher fa-2x m-1"></i>
+                                    <p>答える</p>
+                                </a>
                             </div>
                             <div class="column">
-                                <i class="far fa-clipboard fa-2x m-1"></i>
-                                <p>ノート</p>
+                                <a class="operation" href="#">
+                                    <i class="far fa-clipboard fa-2x m-1"></i>
+                                    <p>ノート</p>
+                                </a>
                             </div>
                             <div class="column">
-                                <i class="far fa-folder fa-2x m-1"></i>
-                                <p>ストック</p>
+                                <a class="operation"  href="#">
+                                    <i class="far fa-folder fa-2x m-1"></i>
+                                    <p>ストック</p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -46,16 +52,18 @@
                                 <h2 class="is-2 font-weight-bold">23</h2>
                                 <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
                             </div>
-                            <div class="column">
-                                <h2>ストック</h2>
-                                <h2 class="is-2 font-weight-bold">23</h2>
-                                <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
-                            </div>
-                            <div class="column">
-                                <h2>採用</h2>
-                                <h2 class="is-2 font-weight-bold">23</h2>
-                                <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
-                            </div>
+                        </div>
+                        <div class="columns has-text-centered is-centered">
+                             <div class="column">
+                                    <h2>ストック</h2>
+                                    <h2 class="is-2 font-weight-bold">23</h2>
+                                    <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
+                                </div>
+                             <div class="column">
+                                    <h2>採用</h2>
+                                    <h2 class="is-2 font-weight-bold">23</h2>
+                                    <p class="data-clip">前日比<i class="fas fa-long-arrow-alt-up"></i>1</p>
+                                </div>
                         </div>
                         <div class="columns has-text-centered is-centered">
                             <div class="column">
