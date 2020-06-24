@@ -45,9 +45,7 @@ class QuestionController extends Controller
             //人気の質問
             $popular_questions=$this->questionRepository->getPopularQuestions();
             return view('questions.index_edit',
-                compact('rec_questions',
-                    'following_questions',
-                        'popular_questions'));
+                compact('rec_questions', 'following_questions', 'popular_questions'));
         }
 
         //todo
