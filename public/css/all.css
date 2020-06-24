@@ -310,3 +310,16 @@ a:focus {
 a.operation:hover {
     color: #3273dc;
 }
+
+.answer-rec{
+    border: solid 1px rgba(243, 110, 90, 0.8);
+    background-color:transparent!important;
+    color: rgba(243, 110, 90, 0.8)!important;
+}
+
+
+.answer-adopted{
+    border: solid 1px #257942;
+    background-color:transparent!important;
+    color: #257942!important;
+}

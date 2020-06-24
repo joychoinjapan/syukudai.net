@@ -16,7 +16,7 @@ class UserRepository
 
     public function withFollowedQuestions($id)
     {
-        return User::where('id',$id)->with('follow','follow.user')->latest()->first();
+        return User::where('id',$id)->with('follow','follow.user','follow.topics')->latest()->first();
     }
 
 }

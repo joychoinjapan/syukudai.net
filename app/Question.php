@@ -36,6 +36,7 @@ class Question extends Model
         return $query->where('is_hidden','F')->where('is_violation','F');
     }
 
+
     public function comments()
     {
         return $this->morphMany('App\Comment','commentable');

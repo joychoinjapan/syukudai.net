@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
-    protected $fillable =['user_id','question_id','content'];
+    protected $fillable =
+        ['user_id','question_id','content', 'adopted','votes_count','comments_count'];
 
     public function user()
     {
@@ -21,5 +22,9 @@ class Answer extends Model
     public function comments()
     {
         return $this->morphMany('App\Comment','commentable');
+    }
+
+    public function scopeAdopted($query){
+        return $query->where('adopted','T');
     }
 }

@@ -14,15 +14,20 @@
                         <a :href="'/questions/'+question.id" class="is-hoverable">
                             <strong>{{question.title}}</strong>
                             <br>
-                            <span class="limit-line">
-                                {{delHtmlTag(question.content)}}
-                            </span>
+                            <span v-for="topic in question.topics" class="tag is-info is-light is-rounded">{{topic.name}}</span>
+<!--                            <span class="limit-line">-->
+<!--                                {{delHtmlTag(question.content)}}-->
+<!--                            </span>-->
                         </a>
                         <br>
-                        <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                        <small>
+                            <a><span class="tag is-success is-light">Aポイント</span>230</a>·
+                            <a>回答 {{question.answers_count}}</a> ·
+                            <a>フォロー {{question.followers_count}}</a>
+                        </small>
                     </p>
                 </div>
-                <article class="media">
+                <article v-for="answer in question.answers" class="media">
                     <figure class="media-left">
                         <p class="image is-48x48">
                             <img src="https://bulma.io/images/placeholders/96x96.png">
@@ -32,51 +37,12 @@
                         <div class="content">
                             <p>
                                 <strong>Sean Brown</strong>
+                                <span class="tag answer-rec ms-1">オススメ</span>
+                                <span class="tag answer-adopted ms-1">採用済</span>
                                 <br>
-                                Donec sollicitudin urna eget eros malesuada sagittis. Pellentesque
-                                habitant
-                                morbi tristique senectus et netus et malesuada fames ac turpis
-                                egestas.
-                                Aliquam blandit nisl a nulla sagittis, a lobortis leo feugiat.
+                                {{delHtmlTag(answer.content)}}
                                 <br>
-                                <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
-                            </p>
-                        </div>
-
-                        <article class="media">
-                            Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi eu lorem
-                            cursus
-                            ullamcorper sit amet nec massa.
-                        </article>
-
-                        <article class="media">
-                            Morbi vitae diam et purus tincidunt porttitor vel vitae augue. Praesent
-                            malesuada metus sed pharetra euismod. Cras tellus odio, tincidunt
-                            iaculis diam
-                            non, porta aliquet tortor.
-                        </article>
-                    </div>
-                </article>
-                <article class="media">
-                    <figure class="media-left">
-                        <p class="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png">
-                        </p>
-                    </figure>
-                    <div class="media-content">
-                        <div class="content">
-                            <p>
-                                <strong>Kayli Eunice </strong>
-                                <br>
-                                Sed convallis scelerisque mauris, non pulvinar nunc mattis vel.
-                                Maecenas
-                                varius felis sit amet magna vestibulum euismod malesuada cursus
-                                libero.
-                                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                                posuere
-                                cubilia Curae; Phasellus lacinia non nisl id feugiat.
-                                <br>
-                                <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                                <small><a>いいね 12</a> · <a>ストック 21</a></small>
                             </p>
                         </div>
                     </div>

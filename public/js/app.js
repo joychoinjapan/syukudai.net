@@ -2575,40 +2575,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "QuestionsList",
   props: {
@@ -53424,46 +53390,88 @@ var render = function() {
       return _c("article", { staticClass: "media" }, [
         _vm._m(0, true),
         _vm._v(" "),
-        _c("div", { staticClass: "media-content" }, [
-          _c("div", { staticClass: "content" }, [
-            _c("p", [
-              _c("strong", { staticClass: "small" }, [
-                _vm._v(_vm._s(question.user.name))
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "is-hoverable",
-                  attrs: { href: "/questions/" + question.id }
-                },
-                [
-                  _c("strong", [_vm._v(_vm._s(question.title))]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "limit-line" }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(_vm.delHtmlTag(question.content)) +
-                        "\n                        "
-                    )
+        _c(
+          "div",
+          { staticClass: "media-content" },
+          [
+            _c("div", { staticClass: "content" }, [
+              _c("p", [
+                _c("strong", { staticClass: "small" }, [
+                  _vm._v(_vm._s(question.user.name))
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "is-hoverable",
+                    attrs: { href: "/questions/" + question.id }
+                  },
+                  [
+                    _c("strong", [_vm._v(_vm._s(question.title))]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _vm._l(question.topics, function(topic) {
+                      return _c(
+                        "span",
+                        { staticClass: "tag is-info is-light is-rounded" },
+                        [_vm._v(_vm._s(topic.name))]
+                      )
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("small", [
+                  _vm._m(1, true),
+                  _vm._v("·\n                            "),
+                  _c("a", [_vm._v("回答 " + _vm._s(question.answers_count))]),
+                  _vm._v(" ·\n                            "),
+                  _c("a", [
+                    _vm._v("フォロー " + _vm._s(question.followers_count))
                   ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _vm._m(1, true)
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(2, true),
-          _vm._v(" "),
-          _vm._m(3, true)
-        ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._l(question.answers, function(answer) {
+              return _c("article", { staticClass: "media" }, [
+                _vm._m(2, true),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-content" }, [
+                  _c("div", { staticClass: "content" }, [
+                    _c("p", [
+                      _c("strong", [_vm._v("Sean Brown")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "tag answer-rec ms-1" }, [
+                        _vm._v("オススメ")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "tag answer-adopted ms-1" }, [
+                        _vm._v("採用済")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(_vm.delHtmlTag(answer.content)) +
+                          "\n                                "
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _vm._m(3, true)
+                    ])
+                  ])
+                ])
+              ])
+            })
+          ],
+          2
+        )
       ])
     }),
     0
@@ -53486,93 +53494,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("a", [
+      _c("span", { staticClass: "tag is-success is-light" }, [
+        _vm._v("Aポイント")
+      ]),
+      _vm._v("230")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("figure", { staticClass: "media-left" }, [
+      _c("p", { staticClass: "image is-48x48" }, [
+        _c("img", {
+          attrs: { src: "https://bulma.io/images/placeholders/96x96.png" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("small", [
-      _c("a", [_vm._v("Like")]),
+      _c("a", [_vm._v("いいね 12")]),
       _vm._v(" · "),
-      _c("a", [_vm._v("Reply")]),
-      _vm._v(" · 3 hrs")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "media" }, [
-      _c("figure", { staticClass: "media-left" }, [
-        _c("p", { staticClass: "image is-48x48" }, [
-          _c("img", {
-            attrs: { src: "https://bulma.io/images/placeholders/96x96.png" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "media-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("p", [
-            _c("strong", [_vm._v("Sean Brown")]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(
-              "\n                            Donec sollicitudin urna eget eros malesuada sagittis. Pellentesque\n                            habitant\n                            morbi tristique senectus et netus et malesuada fames ac turpis\n                            egestas.\n                            Aliquam blandit nisl a nulla sagittis, a lobortis leo feugiat.\n                            "
-            ),
-            _c("br"),
-            _vm._v(" "),
-            _c("small", [
-              _c("a", [_vm._v("Like")]),
-              _vm._v(" · "),
-              _c("a", [_vm._v("Reply")]),
-              _vm._v(" · 2 hrs")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("article", { staticClass: "media" }, [
-          _vm._v(
-            "\n                        Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi eu lorem\n                        cursus\n                        ullamcorper sit amet nec massa.\n                    "
-          )
-        ]),
-        _vm._v(" "),
-        _c("article", { staticClass: "media" }, [
-          _vm._v(
-            "\n                        Morbi vitae diam et purus tincidunt porttitor vel vitae augue. Praesent\n                        malesuada metus sed pharetra euismod. Cras tellus odio, tincidunt\n                        iaculis diam\n                        non, porta aliquet tortor.\n                    "
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "media" }, [
-      _c("figure", { staticClass: "media-left" }, [
-        _c("p", { staticClass: "image is-48x48" }, [
-          _c("img", {
-            attrs: { src: "https://bulma.io/images/placeholders/96x96.png" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "media-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("p", [
-            _c("strong", [_vm._v("Kayli Eunice ")]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(
-              "\n                            Sed convallis scelerisque mauris, non pulvinar nunc mattis vel.\n                            Maecenas\n                            varius felis sit amet magna vestibulum euismod malesuada cursus\n                            libero.\n                            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices\n                            posuere\n                            cubilia Curae; Phasellus lacinia non nisl id feugiat.\n                            "
-            ),
-            _c("br"),
-            _vm._v(" "),
-            _c("small", [
-              _c("a", [_vm._v("Like")]),
-              _vm._v(" · "),
-              _c("a", [_vm._v("Reply")]),
-              _vm._v(" · 2 hrs")
-            ])
-          ])
-        ])
-      ])
+      _c("a", [_vm._v("ストック 21")])
     ])
   }
 ]

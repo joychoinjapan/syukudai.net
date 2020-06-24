@@ -4,6 +4,7 @@
 namespace App\Repositories;
 use App\Question;
 use App\Topic;
+use Doctrine\DBAL\Query\QueryException;
 
 class QuestionRepository
 {
@@ -43,14 +44,31 @@ class QuestionRepository
 
     public function getQuestionsFeed()
     {
-        return Question::published()->latest('updated_at')->with('user')->get();
+        return Question::published()->latest('updated_at')
+                ->with('user','topics')
+                ->with(['answers'=>function($query){
+                    $query->orderByRaw("adopted DESC, votes_count DESC")->first();
+                }])->get();
     }
 
     public function getPopularQuestions()
     {
-        return Question::published()->orderBy('answers_count', 'desc')->with('user')->get();
+        return Question::published()->orderBy('answers_count', 'desc')
+            ->with('user','topics')
+            ->with(['answers'=>function($query){
+                $query->orderByRaw("adopted DESC, votes_count DESC")->first();
+            }])->get();
     }
 
+    public function getFollowedQuestions($user)
+    {
+        return Question::whereHas('followers',function($query)use($user){
+            $query->where('user_id',$user);
+        })->with('user','topics')
+          ->with(['answers'=>function($query){
+                $query->orderByRaw("adopted DESC, votes_count DESC")->first();
+            }])->get();
+    }
 
     public function withComment($id)
     {
