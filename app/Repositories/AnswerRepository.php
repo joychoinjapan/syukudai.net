@@ -23,6 +23,12 @@ class AnswerRepository
         return Answer::with('comments', 'comments.user')->where('id', $id)->first();
     }
 
+    public function getRecommendedAnswer($question_id){
+        return Answer::Where('question_id',$question_id)->orderBy('votes_count','desc')->first();
+    }
+
+
+
 
 
 }

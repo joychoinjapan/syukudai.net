@@ -47,7 +47,7 @@ class QuestionRepository
         return Question::published()->latest('updated_at')
                 ->with('user','topics')
                 ->with(['answers'=>function($query){
-                    $query->orderByRaw("adopted DESC, votes_count DESC")->first();
+                    $query->where('adopted','T')->orWhere('recommendation','T');
                 }])->get();
     }
 
