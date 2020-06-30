@@ -16,15 +16,15 @@
                     <div class="card-content p-3">
                         <div class="columns has-text-centered is-centered">
                             <div class="column">
-                                <a class="operation" href="#">
+                                <a class="operation" href="{{url('/questions/create')}}">
                                     <i class="fas fa-chalkboard-teacher fa-2x m-1"></i>
-                                    <p>答える</p>
+                                    <p>質問する</p>
                                 </a>
                             </div>
                             <div class="column">
                                 <a class="operation" href="#">
                                     <i class="far fa-clipboard fa-2x m-1"></i>
-                                    <p>ノート</p>
+                                    <p>答える</p>
                                 </a>
                             </div>
                             <div class="column">
