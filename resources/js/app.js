@@ -31,6 +31,7 @@ Vue.component('user-avatar',require('./components/Avatar').default);
 Vue.component('profile-form',require('./components/ProfileForm').default);
 Vue.component('message-dialog',require('./components/MessageDialog').default);
 Vue.component('answers-card',require('./components/AnswersCard').default);
+Vue.component('answers-card-guest',require('./components/AnswersCardGuest').default);
 Vue.component('questions-list',require('./components/QuestionsList').default);
 
 

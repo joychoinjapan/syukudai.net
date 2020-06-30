@@ -1787,6 +1787,69 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AnswersCardGuest.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AnswersCardGuest.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _QuestionsList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QuestionsList */ "./resources/js/components/QuestionsList.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "AnswersCardGuest",
+  components: {
+    QuestionsList: _QuestionsList__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    questions: Array
+  },
+  data: function data() {
+    return {
+      selectedQuestions: this.questions,
+      tabs: [{
+        id: 1,
+        name: "questions",
+        des: "おすすめ"
+      }],
+      selectedTabId: 1
+    };
+  },
+  computed: {
+    isActive: function isActive() {
+      return function (id) {
+        return this.selectedTabId == id ? 'is-active' : '';
+      };
+    }
+  },
+  methods: {
+    selectTab: function selectTab(tab) {
+      var that = this;
+      this.selectedTabId = tab.id;
+      this.selectedQuestions = that["".concat(tab.name)];
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArticleYou.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ArticleYou.vue?vue&type=script&lang=js& ***!
@@ -2521,9 +2584,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -52604,6 +52664,62 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AnswersCardGuest.vue?vue&type=template&id=04ba6ec4&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AnswersCardGuest.vue?vue&type=template&id=04ba6ec4&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c(
+      "header",
+      { staticClass: "card-content" },
+      [
+        _c("div", { staticClass: "tabs" }, [
+          _c(
+            "ul",
+            _vm._l(_vm.tabs, function(tab) {
+              return _c("li", { class: _vm.isActive(tab.id) }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { name: tab.name },
+                    on: {
+                      click: function($event) {
+                        return _vm.selectTab(tab)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(tab.des))]
+                )
+              ])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("questions-list", { attrs: { questions: _vm.selectedQuestions } })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArticleYou.vue?vue&type=template&id=0e79c374&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ArticleYou.vue?vue&type=template&id=0e79c374&scoped=true& ***!
@@ -53428,9 +53544,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("small", [
                   _vm._m(1, true),
-                  _vm._v("·\n                            "),
+                  _vm._v("·\n                        "),
                   _c("a", [_vm._v("回答 " + _vm._s(question.answers_count))]),
-                  _vm._v(" ·\n                            "),
+                  _vm._v(" ·\n                        "),
                   _c("a", [
                     _vm._v("フォロー " + _vm._s(question.followers_count))
                   ])
@@ -53457,9 +53573,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("br"),
                       _vm._v(
-                        "\n                                " +
+                        "\n                            " +
                           _vm._s(_vm.delHtmlTag(answer.content)) +
-                          "\n                                "
+                          "\n                            "
                       ),
                       _c("br"),
                       _vm._v(" "),
@@ -66048,6 +66164,7 @@ Vue.component('user-avatar', __webpack_require__(/*! ./components/Avatar */ "./r
 Vue.component('profile-form', __webpack_require__(/*! ./components/ProfileForm */ "./resources/js/components/ProfileForm.vue")["default"]);
 Vue.component('message-dialog', __webpack_require__(/*! ./components/MessageDialog */ "./resources/js/components/MessageDialog.vue")["default"]);
 Vue.component('answers-card', __webpack_require__(/*! ./components/AnswersCard */ "./resources/js/components/AnswersCard.vue")["default"]);
+Vue.component('answers-card-guest', __webpack_require__(/*! ./components/AnswersCardGuest */ "./resources/js/components/AnswersCardGuest.vue")["default"]);
 Vue.component('questions-list', __webpack_require__(/*! ./components/QuestionsList */ "./resources/js/components/QuestionsList.vue")["default"]);
 var app = new Vue({
   el: '#app',
@@ -66348,6 +66465,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnswersCard_vue_vue_type_template_id_3cf774ec_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnswersCard_vue_vue_type_template_id_3cf774ec_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/AnswersCardGuest.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/AnswersCardGuest.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AnswersCardGuest_vue_vue_type_template_id_04ba6ec4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AnswersCardGuest.vue?vue&type=template&id=04ba6ec4&scoped=true& */ "./resources/js/components/AnswersCardGuest.vue?vue&type=template&id=04ba6ec4&scoped=true&");
+/* harmony import */ var _AnswersCardGuest_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AnswersCardGuest.vue?vue&type=script&lang=js& */ "./resources/js/components/AnswersCardGuest.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AnswersCardGuest_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AnswersCardGuest_vue_vue_type_template_id_04ba6ec4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AnswersCardGuest_vue_vue_type_template_id_04ba6ec4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "04ba6ec4",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AnswersCardGuest.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AnswersCardGuest.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/AnswersCardGuest.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AnswersCardGuest_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AnswersCardGuest.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AnswersCardGuest.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AnswersCardGuest_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AnswersCardGuest.vue?vue&type=template&id=04ba6ec4&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/AnswersCardGuest.vue?vue&type=template&id=04ba6ec4&scoped=true& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnswersCardGuest_vue_vue_type_template_id_04ba6ec4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AnswersCardGuest.vue?vue&type=template&id=04ba6ec4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AnswersCardGuest.vue?vue&type=template&id=04ba6ec4&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnswersCardGuest_vue_vue_type_template_id_04ba6ec4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnswersCardGuest_vue_vue_type_template_id_04ba6ec4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

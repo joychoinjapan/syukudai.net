@@ -46,11 +46,10 @@ class QuestionController extends Controller
             $popular_questions=$this->questionRepository->getPopularQuestions();
             return view('questions.index_edit',
                 compact('rec_questions', 'following_questions', 'popular_questions'));
+        }else{
+            $questions=$this->questionRepository->getQuestionsFeed();
+            return view('questions.index_guest',compact('questions'));
         }
-
-        //todo
-        return "カスタマー専用ページ";
-
     }
 
     /**

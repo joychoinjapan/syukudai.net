@@ -15,9 +15,6 @@
                             <strong>{{question.title}}</strong>
                             <br>
                             <span v-for="topic in question.topics" class="tag is-info is-light is-rounded">{{topic.name}}</span>
-<!--                            <span class="limit-line">-->
-<!--                                {{delHtmlTag(question.content)}}-->
-<!--                            </span>-->
                         </a>
                         <br>
                         <small>
