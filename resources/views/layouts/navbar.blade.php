@@ -27,7 +27,7 @@
                         @else
                             <message-drop-down login_user_id="{{Auth::user()->id}}"></message-drop-down>
                             <figure class="image is-48x48 ml-1">
-                                <img class="is-rounded" src="{{Auth::user()->avatar}}">
+                                <img class="is-rounded" src="{{asset(Auth::user()->avatar)}}">
                             </figure>
                             <div class="navbar-item has-dropdown is-hoverable">
                                 <a id="navbarDropdown" class="navbar-link dropdown-toggle" href="#" role="button"
