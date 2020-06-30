@@ -53504,7 +53504,11 @@ var render = function() {
     { staticClass: "card-content answer-block p-0" },
     _vm._l(_vm.questions, function(question) {
       return _c("article", { staticClass: "media" }, [
-        _vm._m(0, true),
+        _c("figure", { staticClass: "media-left" }, [
+          _c("p", { staticClass: "image is-64x64" }, [
+            _c("img", { attrs: { src: question.user.avatar } })
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "div",
@@ -53543,7 +53547,7 @@ var render = function() {
                 _c("br"),
                 _vm._v(" "),
                 _c("small", [
-                  _vm._m(1, true),
+                  _vm._m(0, true),
                   _vm._v("·\n                        "),
                   _c("a", [_vm._v("回答 " + _vm._s(question.answers_count))]),
                   _vm._v(" ·\n                        "),
@@ -53556,7 +53560,11 @@ var render = function() {
             _vm._v(" "),
             _vm._l(question.answers, function(answer) {
               return _c("article", { staticClass: "media" }, [
-                _vm._m(2, true),
+                _c("figure", { staticClass: "media-left" }, [
+                  _c("p", { staticClass: "image is-48x48" }, [
+                    _c("img", { attrs: { src: answer.user.avatar } })
+                  ])
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "media-content" }, [
                   _c("div", { staticClass: "content" }, [
@@ -53579,7 +53587,7 @@ var render = function() {
                       ),
                       _c("br"),
                       _vm._v(" "),
-                      _vm._m(3, true)
+                      _vm._m(1, true)
                     ])
                   ])
                 ])
@@ -53598,35 +53606,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("figure", { staticClass: "media-left" }, [
-      _c("p", { staticClass: "image is-64x64" }, [
-        _c("img", {
-          attrs: { src: "https://bulma.io/images/placeholders/128x128.png" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("a", [
       _c("span", { staticClass: "tag is-success is-light" }, [
         _vm._v("Aポイント")
       ]),
       _vm._v("230")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("figure", { staticClass: "media-left" }, [
-      _c("p", { staticClass: "image is-48x48" }, [
-        _c("img", {
-          attrs: { src: "https://bulma.io/images/placeholders/96x96.png" }
-        })
-      ])
     ])
   },
   function() {

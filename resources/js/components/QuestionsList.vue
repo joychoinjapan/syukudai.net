@@ -3,7 +3,7 @@
         <article v-for="question in questions" class="media">
             <figure class="media-left">
                 <p class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                    <img :src="question.user.avatar">
                 </p>
             </figure>
             <div class="media-content">
@@ -27,7 +27,7 @@
                 <article v-for="answer in question.answers" class="media">
                     <figure class="media-left">
                         <p class="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png">
+                            <img :src="answer.user.avatar">
                         </p>
                     </figure>
                     <div class="media-content">
