@@ -44,7 +44,7 @@ class QuestionController extends Controller
             $following_questions=$this->questionRepository->getFollowedQuestions(Auth::id());
             //人気の質問
             $popular_questions=$this->questionRepository->getPopularQuestions();
-            return view('questions.index_edit',
+            return view('questions.index_user',
                 compact('rec_questions', 'following_questions', 'popular_questions'));
         }else{
             $questions=$this->questionRepository->getQuestionsFeed();

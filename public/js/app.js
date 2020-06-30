@@ -53561,7 +53561,7 @@ var render = function() {
                 _c("div", { staticClass: "media-content" }, [
                   _c("div", { staticClass: "content" }, [
                     _c("p", [
-                      _c("strong", [_vm._v("Sean Brown")]),
+                      _c("strong", [_vm._v(_vm._s(answer.user.name))]),
                       _vm._v(" "),
                       _c("span", { staticClass: "tag answer-rec ms-1" }, [
                         _vm._v("オススメ")

@@ -47,7 +47,7 @@ class QuestionRepository
         return Question::published()->latest('updated_at')
                 ->with('user','topics')
                 ->with(['answers'=>function($query){
-                    $query->where('adopted','T')->orWhere('recommendation','T');
+                    $query->where('adopted','T')->orWhere('recommendation','T')->with('user');
                 }])->get();
     }
 
@@ -56,7 +56,7 @@ class QuestionRepository
         return Question::published()->orderBy('answers_count', 'desc')
             ->with('user','topics')
             ->with(['answers'=>function($query){
-                $query->orderByRaw("adopted DESC, votes_count DESC")->first();
+                $query->orderByRaw("adopted DESC, votes_count DESC")->with('user')->first();
             }])->get();
     }
 
@@ -66,7 +66,7 @@ class QuestionRepository
             $query->where('user_id',$user);
         })->with('user','topics')
           ->with(['answers'=>function($query){
-                $query->orderByRaw("adopted DESC, votes_count DESC")->first();
+                $query->orderByRaw("adopted DESC, votes_count DESC")->with('user')->first();
             }])->get();
     }
 

@@ -33,7 +33,7 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong>Sean Brown</strong>
+                                <strong>{{answer.user.name}}</strong>
                                 <span class="tag answer-rec ms-1">オススメ</span>
                                 <span class="tag answer-adopted ms-1">採用済</span>
                                 <br>
