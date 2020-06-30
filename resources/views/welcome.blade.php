@@ -80,7 +80,7 @@
                                うまく進まない時に、声をかけてください
                            </h2>
                            <div>
-                               <button class="button is-primary">もっと詳しく...</button>
+                               <a class="button is-primary" href="/questions">もっと詳しく...</a>
                            </div>
                        </div>
                        <div class="column">
