@@ -323,3 +323,9 @@ a.operation:hover {
     background-color:transparent!important;
     color: #257942!important;
 }
+
+.footer-menu-title{
+    color: #363636;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
