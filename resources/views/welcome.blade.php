@@ -165,19 +165,55 @@
                     </div>
                     <div class="column">
                         <div class="shadow is-centered my-2">
-                                <img src="{{asset('/img/keiji.png')}}" width="512" height="400">
+                            <img src="{{asset('/img/keiji.png')}}" width="512" height="400">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <footer class="footer">
-            <div class="content has-text-centered">
-                <p>
-                    <strong>Ask</strong> by <a href="https://jgthms.com">Joy cho</a>. The source code is licensed
-                    <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-                    is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-                </p>
+        <footer class="footer py-0">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-5">
+                        <p>
+                            <strong class="title">Ask</strong>
+                            <br>
+                            by <a href="https://jgthms.com">Joy cho</a>. The source code is licensed
+                            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+                        </p>
+                    </div>
+                    <div class="column is-7 has-text-centered">
+                        <div class="columns">
+                            <div class="column is-4">
+                                <p class="footer-menu-title">製品</p>
+                                <ul>
+                                    <li>Ask</li>
+                                    <li>CodingWithMe</li>
+                                </ul>
+                            </div>
+                            <div class="column is-4">
+                                <p class="footer-menu-title">Askについて</p>
+                                <ul>
+                                    <li>About</li>
+                                    <li>利用規約</li>
+                                    <li>お知らせ</li>
+                                    <li>ガイドライン</li>
+                                    <li>ヘルプ</li>
+                                </ul>
+                            </div>
+                            <div class="column is-4">
+                                <p class="footer-menu-title">運営チーム</p>
+                                <ul>
+                                    <li>お問い合わせ</li>
+                                    <li>採用</li>
+                                    <li>ブログ</li>
+                                    <li>ご意見</li>
+                                    <li>広告</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </footer>
     </main>
