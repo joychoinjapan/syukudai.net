@@ -2837,7 +2837,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2850,7 +2849,8 @@ __webpack_require__.r(__webpack_exports__);
     name: String,
     field: String,
     login: Number | String,
-    user: Number | String
+    user: Number | String,
+    avatar: String
   },
   mounted: function mounted() {
     var _this = this;
@@ -53729,7 +53729,11 @@ var render = function() {
       on: { mouseenter: _vm.mouseEnter, mouseleave: _vm.mouseOut }
     },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "media-left" }, [
+        _c("figure", { staticClass: "image is-48x48" }, [
+          _c("img", { attrs: { src: _vm.avatar } })
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "media-content" }, [
         _c("p", { staticClass: "title is-6 mb-1" }, [_vm._v(_vm._s(_vm.name))]),
@@ -53754,7 +53758,11 @@ var render = function() {
         },
         [
           _c("article", { staticClass: "media" }, [
-            _vm._m(1),
+            _c("div", { staticClass: "media-left" }, [
+              _c("figure", { staticClass: "image is-64x64" }, [
+                _c("img", { attrs: { src: _vm.avatar } })
+              ])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "media-content" }, [
               _c("div", { staticClass: "content" }, [
@@ -53778,7 +53786,7 @@ var render = function() {
               _c("strong", [_vm._v(_vm._s(_vm.userInfo.answers))])
             ]),
             _vm._v(" "),
-            _vm._m(2),
+            _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "profile-block" }, [
               _c("p", [_vm._v("フォロワー")]),
@@ -53833,36 +53841,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "media-left" }, [
-      _c("figure", { staticClass: "image is-48x48" }, [
-        _c("img", {
-          attrs: {
-            src: "https://bulma.io/images/placeholders/96x96.png",
-            alt: "Placeholder image"
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "media-left" }, [
-      _c("figure", { staticClass: "image is-64x64" }, [
-        _c("img", {
-          attrs: {
-            src: "https://bulma.io/images/placeholders/128x128.png",
-            alt: "Image"
-          }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

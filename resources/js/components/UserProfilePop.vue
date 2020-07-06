@@ -2,8 +2,7 @@
     <div class="media profile-small-box" @mouseenter="mouseEnter" @mouseleave="mouseOut">
         <div class="media-left">
             <figure class="image is-48x48">
-                <img src="https://bulma.io/images/placeholders/96x96.png"
-                     alt="Placeholder image">
+                <img :src=avatar>
             </figure>
         </div>
         <div class="media-content">
@@ -14,7 +13,7 @@
             <article class="media">
                 <div class="media-left">
                     <figure class="image is-64x64">
-                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                        <img :src=avatar>
                     </figure>
                 </div>
                 <div class="media-content">
@@ -53,6 +52,7 @@
             field: String,
             login: Number|String,
             user:Number|String,
+            avatar:String
         },
         mounted() {
             axios.post('/api/user/follower', {'user_id': this.answerUserId})

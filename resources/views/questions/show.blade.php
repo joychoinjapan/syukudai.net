@@ -102,7 +102,7 @@
                 <div class="card">
                     <header class="card-header">
                         <p class="card-header-title">
-                            答えは{{$question->answers_count}}件あります
+                            答えは{{$question->answers_count-1}}件あります
                         </p>
                         <a href="#" class="card-header-icon" aria-label="more options">
                           <span class="icon">
@@ -116,6 +116,7 @@
                                 <user-profile-pop name="{{$answer->user->name}}"
                                                   user="{{$answer->user->id}}"
                                                   login="{{Auth::user()?Auth::user()->id:null}}"
+                                                  avatar="{{$answer->user->avatar}}"
                                                   field="Python">
                                 </user-profile-pop>
                                 <div class="content">
