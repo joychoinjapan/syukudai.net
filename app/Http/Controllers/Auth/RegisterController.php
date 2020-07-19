@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 
 use App\Mailer\UserMailer;
+use App\Support\RegistersUsersNew;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsersNew;
 
     /**
      * Where to redirect users after registration.
